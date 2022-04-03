@@ -41,6 +41,19 @@ public class StateMachine : MonoBehaviour
     protected List<StateTransition> currentStateTransitions = new List<StateTransition>();
 
 
+    private void Start()
+    {
+        State[] childStates = GetComponentsInChildren<State>();
+
+        if (childStates == null)
+            return;
+
+        for (int i = 0; i < childStates.Length; i++)
+        {
+            AddState(childStates[i]);
+        }
+    }
+
     private void Update()
     {
         if (isActive)
@@ -134,12 +147,30 @@ public class StateMachine : MonoBehaviour
         if (state == null || (state.Transitions == null && state.AlwaysCheckConditions))
             return;
 
-        currentState.DoWhenExit();
+        if (currentState != null)
+            currentState.DoWhenExit();
+
         state.DoWhenEnter();
 
         currentState = state;
         currentStateTransitions = state.Transitions;
         
+    }
+
+    /// <summary>
+    /// public method to change current state to next state
+    /// if it's already the last state, then change to the first state
+    /// </summary>
+    public void ChangeToNextState()
+    {
+        if (currentState == null || states.Count == 0)
+            return;
+
+        int currentIndex = states.IndexOf(currentState);
+        int targetIndex = currentIndex == states.Count - 1 ? 0 : currentIndex + 1;
+        State targetState = states[targetIndex];
+
+        ChangeCurrentState(targetState);
     }
 
 }

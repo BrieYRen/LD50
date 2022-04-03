@@ -57,4 +57,9 @@ public class GameManager : MonoBehaviour
     /// the hud manager to show or hide all hud in cutscenes etc. 
     /// </summary>
     public ToggleHUD toggleHUD;
+
+    /// <summary>
+    /// the inventory manager to manage all items in bag 
+    /// </summary>
+    public Inventory inventoryManager;
 }
