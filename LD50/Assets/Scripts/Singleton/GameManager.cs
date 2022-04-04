@@ -62,4 +62,19 @@ public class GameManager : MonoBehaviour
     /// the inventory manager to manage all items in bag 
     /// </summary>
     public Inventory inventoryManager;
+
+    /// <summary>
+    /// the craft manager to save all formulas
+    /// </summary>
+    public CraftManager craftManager;
+
+    /// <summary>
+    /// the mouse cursor manager to switch cursor
+    /// </summary>
+    public CursorSwitcher cursorSwitcher;
+
+    /// <summary>
+    /// the handler to place an item from inventory to the environment
+    /// </summary>
+    public PlaceItemHandler placeItemHandler;
 }

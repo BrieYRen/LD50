@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ToyMusicState : State
@@ -30,8 +28,4 @@ public class ToyMusicState : State
             audioManager.StopPlayCertainAudio(toyMusicName, 1);
     }
 
-    public override void DoInState()
-    {
-        base.DoInState();
-    }
 }

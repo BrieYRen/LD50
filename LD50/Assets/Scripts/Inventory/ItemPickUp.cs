@@ -22,6 +22,10 @@ public class ItemPickUp : MonoBehaviour
         bool wasPickup = inventory.Add(item);
 
         if (wasPickup && destroyAfterPickup != null)
-            Destroy(destroyAfterPickup);
+        {
+            destroyAfterPickup.SetActive(false);
+            destroyAfterPickup.GetComponent<ShowInteractChoices>().OnClickInteract();
+        }
+            
     }
 }

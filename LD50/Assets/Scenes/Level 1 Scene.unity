@@ -1336,7 +1336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a0c20800cf350448902567eabf0d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: cb0ae868c8f425a4c8bb1988c574d17f, type: 2}
+  item: {fileID: 11400000, guid: ee8c980a0169af544b84d8c02436ac56, type: 2}
   destroyAfterPickup: {fileID: 863168548}
 --- !u!114 &1211024274
 MonoBehaviour:
@@ -1652,7 +1652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a0c20800cf350448902567eabf0d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: a5fd4f377b268894084cd1144dc3603c, type: 2}
+  item: {fileID: 11400000, guid: 9d86b2acfb3c31443a187b65d7aba442, type: 2}
   destroyAfterPickup: {fileID: 505088277}
 --- !u!1 &1702091044
 GameObject:

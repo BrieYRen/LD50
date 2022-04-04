@@ -6,13 +6,32 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
 public class Item : ScriptableObject
 {
+    [Header("Basic Settings")]
+
     new public string name = "New Item";
     public Sprite icon = null;
 
-    [TextArea] public string itemInfo;
+    [Header("Place Item Settings")]
+
+    public bool canPlace;
+    //public RectTransform rtToPlace;
+    public Texture2D placeCursor;
+    public Vector2 placeCursorOffset;
+
 
     public virtual void Use()
     {
-        // to be override
+        ReadyToPlace();
     }
+
+    void ReadyToPlace()
+    {
+        if (!canPlace)
+            return;
+
+        PlaceItem placeItem = GameManager.instance.placeItemHandler.itemPlaceKVPs[this];
+        placeItem.ReadyToPlace();
+    }
+
+
 }
