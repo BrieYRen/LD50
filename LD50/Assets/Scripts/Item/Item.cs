@@ -14,7 +14,6 @@ public class Item : ScriptableObject
     [Header("Place Item Settings")]
 
     public bool canPlace;
-    //public RectTransform rtToPlace;
     public Texture2D placeCursor;
     public Vector2 placeCursorOffset;
 

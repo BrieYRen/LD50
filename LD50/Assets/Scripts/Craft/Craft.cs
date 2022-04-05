@@ -23,26 +23,36 @@ public class Craft : MonoBehaviour
     Inventory inventory;
     CursorSwitcher cursorSwitcher;
     PlaceItemHandler handler;
+    CraftManager craftManager;
 
+    /*
     const float inventoryAreaX = 1177f;
     const float inventoryAreaY = 160.6f;
+    */
 
     private void Start()
     {
         inventory = GameManager.instance.inventoryManager;
         cursorSwitcher = GameManager.instance.cursorSwitcher;
         handler = GameManager.instance.placeItemHandler;
+        craftManager = GameManager.instance.craftManager;
     }
 
     private void Update()
     {
-        DeactiveWhenOutBagArea();
+        /*
+        if (toolItem.inventoryOnly)
+            DeactiveWhenOutBagArea();
+            */
+
+        if (canCraft && Input.GetMouseButtonDown(1))
+            DeactiveTool();
     }
 
     public void ActivateTool()
     {
         // check if it's in placing
-        if (handler.CheckIfPlacing())
+        if (handler.CheckIfPlacing() || craftManager.CheckIfCrafting())
             return;
 
         // change mouse cursor
@@ -61,6 +71,7 @@ public class Craft : MonoBehaviour
         canCraft = false;
     }
 
+    /*
     void DeactiveWhenOutBagArea()
     {
         if (!canCraft)
@@ -68,10 +79,9 @@ public class Craft : MonoBehaviour
 
         Vector3 mousePos = Input.mousePosition;
         if (mousePos.x > inventoryAreaX || mousePos.y > inventoryAreaY)
-            DeactiveTool();
-
-        
+            DeactiveTool();      
     }
+    */
 
     public void CraftProduct(Item material)
     {

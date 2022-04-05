@@ -12,6 +12,9 @@ public class Tool : Item
     public Texture2D toolCursor;
     public Vector2 toolCursorOffset;
 
+    public bool inventoryOnly = true;
+
+
     public override void Use()
     {
         formula = GameManager.instance.craftManager.formulas[this];

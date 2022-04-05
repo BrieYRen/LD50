@@ -19,3 +19,4 @@ MonoBehaviour:
   placeCursorOffset: {x: 0, y: 0}
   toolCursor: {fileID: 2800000, guid: b81b7689ae479f24fbb13510573f96cd, type: 3}
   toolCursorOffset: {x: 0, y: 0}
+  inventoryOnly: 0

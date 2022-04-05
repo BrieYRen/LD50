@@ -28,4 +28,21 @@ public class CraftManager : MonoBehaviour
             }           
         }
     }
+
+    public bool CheckIfCrafting()
+    {
+        Craft[] crafts = GetComponentsInChildren<Craft>();
+
+        if (crafts.Length == 0)
+            return false;
+
+        for (int i = 0; i < crafts.Length; i++)
+        {
+            if (crafts[i].CanCraft)
+                return true;
+        }
+
+        return false;
+    }
+
 }

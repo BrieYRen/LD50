@@ -10,8 +10,21 @@ public class ShowInteractChoices : MonoBehaviour
 
     bool isInteracting = false;
 
+    CraftManager craftManager;
+    PlaceItemHandler handler;
+
+
+    private void Start()
+    {
+        craftManager = GameManager.instance.craftManager;
+        handler = GameManager.instance.placeItemHandler;
+    }
+
     public void OnClickInteract()
     {
+        if (craftManager.CheckIfCrafting() || handler.CheckIfPlacing())
+            return;
+
         isInteracting = !isInteracting;
 
         for (int i = 0; i < buttons.Length; i++)
@@ -19,4 +32,5 @@ public class ShowInteractChoices : MonoBehaviour
             buttons[i].interactable = isInteracting;
         }
     }
+
 }

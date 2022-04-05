@@ -16,6 +16,8 @@ public class PlaceItem : MonoBehaviour
    
     public bool canPlace = false;
 
+    CraftManager craftManager;
+    PlaceItemHandler placeItemHandler;
     CursorSwitcher cursorSwitcher;
     Inventory inventory;
 
@@ -27,6 +29,8 @@ public class PlaceItem : MonoBehaviour
 
     private void Start()
     {
+        craftManager = GameManager.instance.craftManager;
+        placeItemHandler = GameManager.instance.placeItemHandler;
         cursorSwitcher = GameManager.instance.cursorSwitcher;
         inventory = GameManager.instance.inventoryManager;
 
@@ -40,10 +44,16 @@ public class PlaceItem : MonoBehaviour
     {
         if (canPlace && Input.GetMouseButtonDown(0))
             OnClickPlaceButton();
+
+        if (canPlace && Input.GetMouseButtonDown(1))
+            BackNormal();
     }
 
     public void ReadyToPlace()
     {
+        if (craftManager.CheckIfCrafting() || placeItemHandler.CheckIfPlacing())
+            return;
+
         canPlace = true;
 
         freeplaceParent.blocksRaycasts = true;
