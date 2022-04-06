@@ -77,4 +77,14 @@ public class GameManager : MonoBehaviour
     /// the handler to place an item from inventory to the environment
     /// </summary>
     public PlaceItemHandler placeItemHandler;
+
+    /// <summary>
+    /// the level manager to config variables in game manager that varies in each level
+    /// </summary>
+    public LevelManager levelManager;
+
+    /// <summary>
+    /// the state machines that is running at game manager
+    /// </summary>
+    public StateMachine[] stateMachines;
 }

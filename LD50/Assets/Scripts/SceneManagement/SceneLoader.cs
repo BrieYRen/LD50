@@ -89,12 +89,12 @@ public class SceneLoader : MonoBehaviour
     /// public method to save which scene index the player has unlocked
     /// </summary>
     /// <param name="saveNext"></param>
-    public void SaveSceneProgression(bool saveNext)
+    public void SaveSceneProgression(bool savePreviousTitle)
     {
         int tempIndex = SceneManager.GetActiveScene().buildIndex;
 
-        if (saveNext)
-            tempIndex++;
+        if (savePreviousTitle)
+            tempIndex--;
 
         if (!PlayerPrefs.HasKey(sceneIndexSaveKey))
             saveKeyRegister.RegisterKey(sceneIndexSaveKey, false);

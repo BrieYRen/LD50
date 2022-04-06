@@ -34,6 +34,13 @@ public class StateMachine : MonoBehaviour
     /// the current state of this state machine
     /// </summary>
     protected State currentState;
+    public State CurrentState
+    {
+        get
+        {
+            return currentState;
+        }
+    }
 
     /// <summary>
     /// the transition conditions of the current state
