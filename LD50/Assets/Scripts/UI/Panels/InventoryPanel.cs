@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InventoryPanel : UIPanel
 {
@@ -11,6 +12,7 @@ public class InventoryPanel : UIPanel
     Inventory inventory;
     Slot[] inventorySlots;
 
+
     protected override void OnStart()
     {
         base.OnStart();
@@ -19,6 +21,8 @@ public class InventoryPanel : UIPanel
         inventory.onItemChangedCallback += UpdateUI;
 
         inventorySlots = itemsParent.GetComponentsInChildren<Slot>();
+
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
 
         UpdateUI();
     }
@@ -32,5 +36,10 @@ public class InventoryPanel : UIPanel
             else
                 inventorySlots[i].ClearSlot();
         }
+    }
+
+    void OnSceneUnloaded(Scene scene)
+    {
+        this.Close();
     }
 }

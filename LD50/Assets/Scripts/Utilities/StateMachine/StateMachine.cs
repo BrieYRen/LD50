@@ -155,10 +155,12 @@ public class StateMachine : MonoBehaviour
             return;
 
         if (currentState != null)
+        {
             currentState.DoWhenExit();
 
-        state.DoWhenEnter();
-
+            state.DoWhenEnter();
+        }
+            
         currentState = state;
         currentStateTransitions = state.Transitions;
         

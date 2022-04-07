@@ -64,6 +64,11 @@ public class GameManager : MonoBehaviour
     public Inventory inventoryManager;
 
     /// <summary>
+    /// the inventory panel to show in hud
+    /// </summary>
+    public InventoryPanel inventoryPanel;
+
+    /// <summary>
     /// the craft manager to save all formulas
     /// </summary>
     public CraftManager craftManager;

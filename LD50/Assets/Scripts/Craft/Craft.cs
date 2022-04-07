@@ -11,6 +11,15 @@ public class Craft : MonoBehaviour
     [SerializeField]
     List<Item> products;
 
+    [SerializeField]
+    StateMachine stateMachine;
+
+    [SerializeField]
+    State materialState;
+
+    [SerializeField]
+    State productState;
+
     private bool canCraft = false;
     public bool CanCraft
     {
@@ -25,10 +34,6 @@ public class Craft : MonoBehaviour
     PlaceItemHandler handler;
     CraftManager craftManager;
 
-    /*
-    const float inventoryAreaX = 1177f;
-    const float inventoryAreaY = 160.6f;
-    */
 
     private void Start()
     {
@@ -40,11 +45,6 @@ public class Craft : MonoBehaviour
 
     private void Update()
     {
-        /*
-        if (toolItem.inventoryOnly)
-            DeactiveWhenOutBagArea();
-            */
-
         if (canCraft && Input.GetMouseButtonDown(1))
             DeactiveTool();
     }
@@ -60,6 +60,7 @@ public class Craft : MonoBehaviour
 
         // ready to craft
         canCraft = true;
+
     }
 
     public void DeactiveTool()
@@ -69,19 +70,9 @@ public class Craft : MonoBehaviour
 
         // disallow craft
         canCraft = false;
+
     }
 
-    /*
-    void DeactiveWhenOutBagArea()
-    {
-        if (!canCraft)
-            return;
-
-        Vector3 mousePos = Input.mousePosition;
-        if (mousePos.x > inventoryAreaX || mousePos.y > inventoryAreaY)
-            DeactiveTool();      
-    }
-    */
 
     public void CraftProduct(Item material)
     {
@@ -94,6 +85,19 @@ public class Craft : MonoBehaviour
 
             int index = materials.IndexOf(material);           
             inventory.Add(products[index]);
+        }
+
+        DeactiveTool();
+    }
+
+    public void ChangeStateMachine()
+    {
+        if (!canCraft)
+            return;
+
+        if (stateMachine.CurrentState == materialState)
+        {
+            stateMachine.ChangeCurrentState(productState);
         }
 
         DeactiveTool();

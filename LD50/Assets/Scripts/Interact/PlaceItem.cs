@@ -19,7 +19,7 @@ public class PlaceItem : MonoBehaviour
     CraftManager craftManager;
     PlaceItemHandler placeItemHandler;
     CursorSwitcher cursorSwitcher;
-    Inventory inventory;
+    protected Inventory inventory;
 
     public RectTransform itemToSpawn;
 
@@ -49,7 +49,7 @@ public class PlaceItem : MonoBehaviour
             BackNormal();
     }
 
-    public void ReadyToPlace()
+    public virtual void ReadyToPlace()
     {
         if (craftManager.CheckIfCrafting() || placeItemHandler.CheckIfPlacing())
             return;
@@ -62,7 +62,7 @@ public class PlaceItem : MonoBehaviour
         cursorSwitcher.SetToCursor(item.placeCursor, item.placeCursorOffset);
     }
 
-    public void BackNormal()
+    public virtual void BackNormal()
     {        
         canPlace = false;
 
@@ -75,22 +75,7 @@ public class PlaceItem : MonoBehaviour
     public void OnClickPlaceButton()
     {
         // check if the click position is within the free place area
-        bool canFreePlace = false;
-
-        PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
-        pointerEventData.position = Input.mousePosition;
-
-        List<RaycastResult> raycastResults = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(pointerEventData, raycastResults);
-
-        if (raycastResults.Count > 0)
-        {
-            for (int i = 0; i < raycastResults.Count; i++)
-            {
-                if (raycastResults[i].gameObject.CompareTag(areaTag))
-                    canFreePlace = true;
-            }
-        }
+        bool canFreePlace =  RaycastTagCheck(areaTag);
 
         // if it's in free place area   
         if (canFreePlace)
@@ -105,12 +90,38 @@ public class PlaceItem : MonoBehaviour
             // remove from inventory 
             inventory.Removed(item);
         }
-        
+
+        // check other conditions when needed
+        SpecificCheck();
 
         // leave the ready to place state
         BackNormal();
     }
 
+    public virtual void SpecificCheck()
+    {
+        // to be override
+    }
+
+    protected bool RaycastTagCheck(string tag)
+    {
+        PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
+        pointerEventData.position = Input.mousePosition;
+
+        List<RaycastResult> raycastResults = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerEventData, raycastResults);
+
+        if (raycastResults.Count > 0)
+        {
+            for (int i = 0; i < raycastResults.Count; i++)
+            {
+                if (raycastResults[i].gameObject.CompareTag(tag))
+                    return true;
+            }
+        }
+
+        return false;
+    }
 
     // destroy the spawned items on level change
     void OnSceneUnloaded(Scene scene)
