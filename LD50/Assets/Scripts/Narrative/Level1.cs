@@ -36,6 +36,7 @@ public class Level1 : Level
     int currentStage = 0;
 
     ToggleHUD toggleHUD;
+    BlockPanel blockPanel;
     LevelManager levelManager;
 
     [Header("First Anim")]
@@ -171,12 +172,26 @@ public class Level1 : Level
 
     SceneLoader sceneLoader;
 
+    [Header("Music and Sound")]
+
+    AudioManager audioManager;
+
+    string titleName = "BGMTitle";
+    string mainLoopName = "BGMMain";
+    string introName = "BGMIntro";
+    float introTime = 16f;
+    string themeName = "BGMTheme";
+    float themeTime = 16f;
+
+    string toyMusic = "Toy";
+
 
     private void Start()
     {
         toggleHUD = GameManager.instance.toggleHUD;
         inventoryPanel = GameManager.instance.inventoryPanel;
         sceneLoader = GameManager.instance.sceneLoader;
+        blockPanel = GameManager.instance.blockPanel;
 
         levelManager = GameManager.instance.levelManager;
         levelManager.InitCurrentLevel(this);
@@ -202,7 +217,10 @@ public class Level1 : Level
 
         cageFSMCanvasGroup = cageStateMachine.gameObject.GetComponent<CanvasGroup>();
 
+        audioManager = GameManager.instance.audioManager;
+
         PlayStartAnim();
+        PlayIntroBGM(.2f);
     }
 
     void CheckItem()
@@ -212,6 +230,31 @@ public class Level1 : Level
             if (inventory.items.Contains(conditionItems[i]) && !inventory.items.Contains(spawnItems[i]))
                 inventory.Add(spawnItems[i]);
         }
+    }
+
+    void PlayIntroBGM(float crossFadeTime)
+    {       
+        StartCoroutine(ChangeMusicInSec(new string[] { titleName, mainLoopName, themeName }, introName, crossFadeTime, 0f));
+        StartCoroutine(ChangeMusicInSec(new string[] { introName }, mainLoopName, crossFadeTime, introTime));
+    }
+
+    void PlayThemeBGM(float crossFadeTime)
+    {
+        StopCoroutine(ChangeMusicInSec(new string[] { introName }, mainLoopName, crossFadeTime, introTime));
+        StopCoroutine(ChangeMusicInSec(new string[] { themeName }, mainLoopName, crossFadeTime, themeTime));
+
+        StartCoroutine(ChangeMusicInSec(new string[] { titleName, mainLoopName, introName }, themeName, crossFadeTime, 0f));
+        StartCoroutine(ChangeMusicInSec(new string[] { themeName }, mainLoopName, crossFadeTime, themeTime));
+    }
+
+    IEnumerator ChangeMusicInSec(string[] previousMusics, string targetMusic, float crossFadeTime, float waitTime)
+    {
+        yield return new WaitForSecondsRealtime(waitTime);
+
+        for (int i = 0; i < previousMusics.Length; i++)
+            audioManager.StopPlayCertainAudio(previousMusics[i], crossFadeTime);
+
+        audioManager.PlayIfHasAudio(targetMusic, crossFadeTime);
     }
 
     IEnumerator ResumeHUDInSec(float waitTime)
@@ -281,12 +324,16 @@ public class Level1 : Level
             toHideRTs[i].gameObject.SetActive(false);
 
         inventoryPanel.Close();
+
+        audioManager.StopPlayCertainAudio(toyMusic, 1f);
     }
 
     void PlayStartAnim()
     {       
         toggleHUD.HideHUD();
         inventoryPanel.Close();
+        blockPanel.gameObject.SetActive(true);
+        blockPanel.GetComponent<RectTransform>().SetAsLastSibling();
         animCanvasGroup.blocksRaycasts = true;
 
         for (int i = 0; i < allAnimFrames.Length; i++)
@@ -300,17 +347,22 @@ public class Level1 : Level
         
         StartCoroutine(ResumeHUDInSec(firstAnimTime));
         StartCoroutine(AllowInteract(firstAnimTime));
+        StartCoroutine(SetActiveInSec(blockPanel.gameObject, false, firstAnimTime));
 
         StartCoroutine(SetAnimToIndex(animStartCat, frozeFrame, firstAnimTime));
         StartCoroutine(SetAnimToIndex(animStartBird, frozeFrameBird, firstAnimTime));
 
-        StartCoroutine(ShowText(tutText, firstAnimTime - textOffsetTime * 1.5f, textOffsetTime * 1.8f));
+        StartCoroutine(ShowText(tutText, firstAnimTime - textOffsetTime * 1.5f, textOffsetTime * 3f));
     }
 
     void PlayS1FailedAnim()
     {
+        PlayThemeBGM(.2f);
+
         toggleHUD.HideHUD();
         inventoryPanel.Close();
+        blockPanel.gameObject.SetActive(true);
+        blockPanel.GetComponent<RectTransform>().SetAsLastSibling();
         animCanvasGroup.blocksRaycasts = true;
         canvasOverride.sortingOrder = playOnTopSortLayer;
 
@@ -324,6 +376,7 @@ public class Level1 : Level
         s1FailedCatAnim.PlayOnce(s1FailedStartFrame, s1FailedEndFrame, firstRate);
 
         StartCoroutine(ResumeHUDInSec(s1FailedAnimTime));
+        StartCoroutine(SetActiveInSec(blockPanel.gameObject, false, s1FailedAnimTime));
         StartCoroutine(AllowInteract(s1FailedAnimTime));
         StartCoroutine(SetSortLayerInSec(defaultSortLayer, s1FailedAnimTime));
 
@@ -333,8 +386,12 @@ public class Level1 : Level
 
     void PlayS1WinAnim()
     {
+        PlayThemeBGM(.2f);
+
         toggleHUD.HideHUD();
         inventoryPanel.Close();
+        blockPanel.gameObject.SetActive(true);
+        blockPanel.GetComponent<RectTransform>().SetAsLastSibling();
         animCanvasGroup.blocksRaycasts = true;
         canvasOverride.sortingOrder = playOnTopSortLayer;
 
@@ -348,8 +405,9 @@ public class Level1 : Level
         s1WinCatAnim.PlayOnce(s1WinStartFrame, s1WinEndFrame, firstRate);
 
         StartCoroutine(ResumeHUDInSec(s1WinAnimTime));
+        StartCoroutine(SetActiveInSec(blockPanel.gameObject, false, s1WinAnimTime));
         StartCoroutine(AllowInteract(s1WinAnimTime));
-        StartCoroutine(SetSortLayerInSec(defaultSortLayer, s1FailedAnimTime));
+        StartCoroutine(SetSortLayerInSec(defaultSortLayer, s1WinAnimTime));
 
         StartCoroutine(SetAnimToIndex(s1WinCatAnim, s1WinFrozeFrame, s1WinAnimTime));
         StartCoroutine(SetAnimToIndex(s1WinBirdAnim, s1WinFrozeFrame, s1WinAnimTime));
@@ -360,8 +418,12 @@ public class Level1 : Level
 
     void PlayS2NormalAnim()
     {
+        PlayThemeBGM(.2f);
+
         toggleHUD.HideHUD();
         inventoryPanel.Close();
+        blockPanel.gameObject.SetActive(true);
+        blockPanel.GetComponent<RectTransform>().SetAsLastSibling();
         animCanvasGroup.blocksRaycasts = true;
         canvasOverride.sortingOrder = playOnTopSortLayer;
 
@@ -377,6 +439,7 @@ public class Level1 : Level
         s2NormalAnimCat.PlayOnce(s2NormalStartFrame, s2NormalEndFrame, firstRate);
 
         StartCoroutine(ResumeHUDInSec(s2NormalAnimTime));
+        StartCoroutine(SetActiveInSec(blockPanel.gameObject, false, s2NormalAnimTime));
         StartCoroutine(AllowInteract(s2NormalAnimTime));
         StartCoroutine(SetSortLayerInSec(defaultSortLayer, s2NormalAnimTime));
 
@@ -391,8 +454,12 @@ public class Level1 : Level
 
     void PlayS2DiaryCloseAnim()
     {
+        PlayThemeBGM(.2f);
+
         toggleHUD.HideHUD();
         inventoryPanel.Close();
+        blockPanel.gameObject.SetActive(true);
+        blockPanel.GetComponent<RectTransform>().SetAsLastSibling();
         animCanvasGroup.blocksRaycasts = true;
         canvasOverride.sortingOrder = playOnTopSortLayer;
 
@@ -408,6 +475,7 @@ public class Level1 : Level
         s2closeAnimCat.PlayOnce(s2closeStartFrame, s2closeEndFrame, firstRate);
 
         StartCoroutine(ResumeHUDInSec(s2closeAnimTime));
+        StartCoroutine(SetActiveInSec(blockPanel.gameObject, false, s2closeAnimTime));
         StartCoroutine(AllowInteract(s2closeAnimTime));
         StartCoroutine(SetSortLayerInSec(defaultSortLayer, s2closeAnimTime));
 
@@ -422,8 +490,12 @@ public class Level1 : Level
 
     void PlayS2DiaryOpenAnim()
     {
+        PlayThemeBGM(.2f);
+
         toggleHUD.HideHUD();
         inventoryPanel.Close();
+        blockPanel.gameObject.SetActive(true);
+        blockPanel.GetComponent<RectTransform>().SetAsLastSibling();
         animCanvasGroup.blocksRaycasts = true;
         canvasOverride.sortingOrder = playOnTopSortLayer;
 
@@ -439,6 +511,7 @@ public class Level1 : Level
         s2DiaryOpenAnimCat.PlayOnce(s2DiaryOpenStartFrame, s2DiaryOpenEndFrame, firstRate);
 
         StartCoroutine(ResumeHUDInSec(s2DiaryOpenAnimTime));
+        StartCoroutine(SetActiveInSec(blockPanel.gameObject, false, s2DiaryOpenAnimTime));
         StartCoroutine(AllowInteract(s2DiaryOpenAnimTime));
         StartCoroutine(SetSortLayerInSec(defaultSortLayer, s2DiaryOpenAnimTime));
 
@@ -453,9 +526,13 @@ public class Level1 : Level
 
     void PlayS2WinAnim()
     {
+        PlayThemeBGM(.2f);
+
         // play s2 win anim
         toggleHUD.HideHUD();
         inventoryPanel.Close();
+        blockPanel.gameObject.SetActive(true);
+        blockPanel.GetComponent<RectTransform>().SetAsLastSibling();
         animCanvasGroup.blocksRaycasts = true;
         canvasOverride.sortingOrder = playOnTopSortLayer;
 
@@ -470,9 +547,10 @@ public class Level1 : Level
         s2WinAnimBird.PlayOnce(s2WinStartFrame, s2WinEndFrame, firstRate);
         s2WinAnimCat.PlayOnce(s2WinStartFrame, s2WinEndFrame, firstRate);
 
-        StartCoroutine(ResumeHUDInSec(s2WinAnimTime));
-        StartCoroutine(AllowInteract(s2WinAnimTime));
-        StartCoroutine(SetSortLayerInSec(defaultSortLayer, s2WinAnimTime));
+        StartCoroutine(ResumeHUDInSec(s2WinAnimTime + 5f));
+        StartCoroutine(SetActiveInSec(blockPanel.gameObject, false, s2WinAnimTime + 5f));
+        StartCoroutine(AllowInteract(s2WinAnimTime + 5f));
+        StartCoroutine(SetSortLayerInSec(defaultSortLayer, s2WinAnimTime + 5f));
 
         StartCoroutine(SetAnimToIndex(s2WinAnimCat, s2WinFrozeFrame, s2WinAnimTime));
         StartCoroutine(SetAnimToIndex(s2WinAnimBird, s2WinFrozeFrame, s2WinAnimTime));
@@ -484,7 +562,7 @@ public class Level1 : Level
         StartCoroutine(ShowText(themeText, s2WinAnimTime, textOffsetTime * 5f));
 
         // load next scene after finished the anim
-        StartCoroutine(LoadNextSceneInSec(s2WinAnimTime + 5f));
+        StartCoroutine(LoadNextSceneInSec(s2WinAnimTime + 5.01f));
 
     }
 

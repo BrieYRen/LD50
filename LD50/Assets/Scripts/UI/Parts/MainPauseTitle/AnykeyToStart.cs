@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -14,10 +15,16 @@ public class AnykeyToStart : MonoBehaviour
     [Tooltip("Drag and drop the continue button in main menu here, when there is previous progression in save file, it will be activated")]
     GameObject continueButton;
 
+    int sceneIndexToShowContinue = 2;
+
     SceneLoader sceneLoader;
 
     int sceneIndexToLoad = 1;
     bool isLoading = false;
+
+    AudioManager audioManager;
+    string bgmName = "BGMTitle";
+
 
     private void Start()
     {
@@ -26,9 +33,21 @@ public class AnykeyToStart : MonoBehaviour
         if (PlayerPrefs.HasKey(sceneLoader.sceneIndexSaveKey))
         {
             sceneIndexToLoad = PlayerPrefs.GetInt(sceneLoader.sceneIndexSaveKey);
-            continueButton.SetActive(true);
+
+            if (sceneIndexToLoad > sceneIndexToShowContinue)
+                continueButton.SetActive(true);
         }
-            
+
+        StartCoroutine(StartBGM(.1f));
+
+    }
+
+    IEnumerator StartBGM(float waitSec)
+    {
+        yield return new WaitForSecondsRealtime(waitSec);
+
+        audioManager = GameManager.instance.audioManager;
+        audioManager.PlayIfHasAudio(bgmName, .2f);
     }
 
     private void Update()

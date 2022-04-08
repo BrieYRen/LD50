@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +13,7 @@ public class PlaceItem : MonoBehaviour
 
     public Canvas toPlaceCanvas;
    
+    [HideInInspector]
     public bool canPlace = false;
 
     CraftManager craftManager;
@@ -24,7 +24,12 @@ public class PlaceItem : MonoBehaviour
     public RectTransform itemToSpawn;
 
     public CanvasGroup freeplaceParent;
+
+    [Tooltip("area that can free place item at mouse position")]
     public string areaTag;
+
+    [Tooltip("plane that can place item at a preset position")]
+    public string planeTag;
 
 
     private void Start()
@@ -74,22 +79,31 @@ public class PlaceItem : MonoBehaviour
 
     public void OnClickPlaceButton()
     {
-        // check if the click position is within the free place area
+        // check if the click position is within the place area and free place area
         bool canFreePlace =  RaycastTagCheck(areaTag);
+        bool canPut = RaycastTagCheck(planeTag);
 
-        // if it's in free place area   
-        if (canFreePlace)
+
+        // if it's in can place area
+        if (canPut)
         {
-            // place the interactable object at mouse position 
-            Vector2 mousePos = new Vector2();
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(toPlaceCanvas.transform as RectTransform, Input.mousePosition, toPlaceCanvas.worldCamera, out mousePos);
+            // if it's in free place area   
+            if (canFreePlace)
+            {
+                // place the interactable object at mouse position 
+                Vector2 mousePos = new Vector2();
+                RectTransformUtility.ScreenPointToLocalPointInRectangle(toPlaceCanvas.transform as RectTransform, Input.mousePosition, toPlaceCanvas.worldCamera, out mousePos);
 
-            itemToSpawn.transform.position = toPlaceCanvas.transform.TransformPoint(mousePos);
+                itemToSpawn.transform.position = toPlaceCanvas.transform.TransformPoint(mousePos);
+            }
+
+            // show placed item
             itemToSpawn.gameObject.SetActive(true);
 
             // remove from inventory 
             inventory.Removed(item);
         }
+              
 
         // check other conditions when needed
         SpecificCheck();

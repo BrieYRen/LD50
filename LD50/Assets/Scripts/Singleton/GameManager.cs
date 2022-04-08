@@ -49,6 +49,11 @@ public class GameManager : MonoBehaviour
     public SceneLoader sceneLoader;
 
     /// <summary>
+    /// the block panel to forbid mouse action when play cutscenes
+    /// </summary>
+    public BlockPanel blockPanel;
+
+    /// <summary>
     /// the save load manager to store all save file keys in certain categories
     /// </summary>
     public SaveKeyRegister saveKeyRegister;
@@ -92,4 +97,6 @@ public class GameManager : MonoBehaviour
     /// the state machines that is running at game manager
     /// </summary>
     public StateMachine[] stateMachines;
+
+
 }

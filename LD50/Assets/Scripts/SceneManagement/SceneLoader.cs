@@ -24,9 +24,13 @@ public class SceneLoader : MonoBehaviour
     public readonly string sceneIndexSaveKey = "sceneIndex";
     SaveKeyRegister saveKeyRegister;
 
+    RectTransform rectTransform;
+
+
     private void Start()
     {
         animator = GetComponent<Animator>();
+        rectTransform = GetComponent<RectTransform>();
         saveKeyRegister = GameManager.instance.saveKeyRegister;
 
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -57,6 +61,9 @@ public class SceneLoader : MonoBehaviour
     /// <returns></returns>
     IEnumerator LoadInSec(float delaySec, int sceneIndex)
     {
+        // bring fade black panel on top
+        rectTransform.SetAsLastSibling();
+
         if (animator != null)
             animator.SetTrigger(fadeOutAnimTrigger);
         

@@ -7,6 +7,8 @@ TagManager:
   - diaryArea
   - toyArea
   - cageArea
+  - tablePlane
+  - bedPlane
   layers:
   - Default
   - TransparentFX

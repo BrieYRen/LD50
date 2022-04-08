@@ -148,7 +148,7 @@ public class AudioManager : MonoBehaviour
             Debug.Log(name + " not founded!");
             return;
         }
-            
+
         if (audioDict[name].isPlaying && audioDict[name].loop)
             return;
 

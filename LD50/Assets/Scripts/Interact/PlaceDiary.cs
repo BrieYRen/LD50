@@ -22,7 +22,7 @@ public class PlaceDiary : PlaceItem
     State cageDoorOpen;
 
     [SerializeField]
-    string cageAreaTag = "";
+    string cageAreaTag = "cageArea";
 
     [SerializeField]
     Item diaryOpen;
@@ -44,7 +44,7 @@ public class PlaceDiary : PlaceItem
     {
         base.BackNormal();
 
-        cagePlaceArea.blocksRaycasts = false;
+        //cagePlaceArea.blocksRaycasts = false;
 
         if (hasPlaced)
         {
