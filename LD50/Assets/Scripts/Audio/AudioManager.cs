@@ -22,6 +22,18 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     Dictionary<string, AudioSource> audioDict;
 
+    /// <summary>
+    /// the current playing background music's name
+    /// </summary>
+    public string currentBGM = "";
+
+    [Tooltip("how many beats per minute in bgm")]
+    [SerializeField]
+    double bgmTempo = 100;
+
+    double timeSignatureFirstNum = 3;
+    double timeSignatureSecondNum = 4;
+
 
     private void Start()
     {
@@ -57,6 +69,9 @@ public class AudioManager : MonoBehaviour
                 audioSource.pitch = s.pitch;
 
                 audioDict.Add(s.name, audioSource);
+
+                CoroutineContainer container = gameObject.AddComponent<CoroutineContainer>();
+                container.audioSourceKey = s.name;
             }
         }
     }
@@ -135,6 +150,7 @@ public class AudioManager : MonoBehaviour
 
     /// <summary>
     /// begin to play an audio with optional fade in effect
+    /// this method is use for sfx and ambience not for music
     /// </summary>
     /// <param name="name"></param>
     /// <param name="fadeInSec"></param>
@@ -177,6 +193,7 @@ public class AudioManager : MonoBehaviour
 
     /// <summary>
     /// stop playing a certain audio with optional fade out effect
+    /// this method is use for sfx and ambience not for music
     /// </summary>
     /// <param name="name"></param>
     /// <param name="fadeOutSec"></param>
@@ -216,5 +233,64 @@ public class AudioManager : MonoBehaviour
         audioDict[name].volume = startVolumn;
         yield break;
     }
+
+    /// <summary>
+    /// begin to play a loop music
+    /// </summary>
+    /// <param name="loopName"></param>
+    public void PlayIfHasMusic(string loopName)
+    {
+        if (loopName == null || !audioDict.ContainsKey(loopName))
+            return;
+
+        if (currentBGM == "")
+        {
+            audioDict[loopName].PlayScheduled(AudioSettings.dspTime + .2d);
+            currentBGM = loopName;
+        }
+        else
+        {           
+            double toPlayTime = CalculatePlayTime(audioDict[currentBGM], bgmTempo, timeSignatureFirstNum, timeSignatureSecondNum);
+            float delayTime = (float)(toPlayTime - AudioSettings.dspTime);
+
+            if (loopName == currentBGM)
+            {
+                var container = audioDict[loopName].gameObject.GetComponent<CoroutineContainer>();
+                StartCoroutine(container.ReplayMusicInSec(delayTime));
+            }
+            else
+            {
+                if (audioDict[loopName].isPlaying)
+                    audioDict[loopName].Stop();
+
+                audioDict[currentBGM].SetScheduledEndTime(toPlayTime);
+                audioDict[loopName].PlayScheduled(toPlayTime);
+
+                var container = audioDict[loopName].gameObject.GetComponent<CoroutineContainer>();
+                StartCoroutine(container.ChangeCurrentBGMString(delayTime));
+            }
+                           
+        }
+               
+    }
+
+    /// <summary>
+    /// calculate when to change music so as to change it seamlessly
+    /// </summary>
+    /// <param name="currentAudio"></param>
+    /// <param name="currentTempo"></param>
+    /// <param name="timeSignatureFirstNum"></param>
+    /// <param name="timeSignatureSecondNum"></param>
+    /// <returns></returns>
+    double CalculatePlayTime(AudioSource currentAudio, double currentTempo, double timeSignatureFirstNum, double timeSignatureSecondNum)
+    {
+        double barDuration = (60d / currentTempo) * timeSignatureFirstNum; //* (timeSignatureFirstNum / timeSignatureSecondNum);
+        double remainder = ((double)currentAudio.timeSamples / currentAudio.clip.frequency) % barDuration;
+        double nextBarTime = AudioSettings.dspTime + barDuration - remainder;
+
+        return nextBarTime;
+    }
+
+
 
 }

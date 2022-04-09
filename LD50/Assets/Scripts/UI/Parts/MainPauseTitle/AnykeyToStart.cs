@@ -23,7 +23,7 @@ public class AnykeyToStart : MonoBehaviour
     bool isLoading = false;
 
     AudioManager audioManager;
-    string bgmName = "BGMTitle";
+    string bgmName = "BGMIntro";
 
 
     private void Start()
@@ -38,17 +38,16 @@ public class AnykeyToStart : MonoBehaviour
                 continueButton.SetActive(true);
         }
 
-        StartCoroutine(StartBGM(.1f));
-
-    }
-
-    IEnumerator StartBGM(float waitSec)
-    {
-        yield return new WaitForSecondsRealtime(waitSec);
-
         audioManager = GameManager.instance.audioManager;
-        audioManager.PlayIfHasAudio(bgmName, .2f);
+        StartCoroutine(PlayBGM(.01f));
     }
+
+    IEnumerator PlayBGM(float delayTime)
+    {
+        yield return new WaitForSecondsRealtime(delayTime);
+        audioManager.PlayIfHasMusic(bgmName);
+    }
+
 
     private void Update()
     {

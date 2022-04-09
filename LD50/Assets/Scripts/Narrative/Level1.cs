@@ -176,12 +176,12 @@ public class Level1 : Level
 
     AudioManager audioManager;
 
-    string titleName = "BGMTitle";
-    string mainLoopName = "BGMMain";
+    //string titleName = "BGMTitle";
+    //string mainLoopName = "BGMMain";
     string introName = "BGMIntro";
-    float introTime = 16f;
+    //float introTime = 16f;
     string themeName = "BGMTheme";
-    float themeTime = 16f;
+    //float themeTime = 16f;
 
     string toyMusic = "Toy";
 
@@ -220,7 +220,6 @@ public class Level1 : Level
         audioManager = GameManager.instance.audioManager;
 
         PlayStartAnim();
-        PlayIntroBGM(.2f);
     }
 
     void CheckItem()
@@ -232,30 +231,6 @@ public class Level1 : Level
         }
     }
 
-    void PlayIntroBGM(float crossFadeTime)
-    {       
-        StartCoroutine(ChangeMusicInSec(new string[] { titleName, mainLoopName, themeName }, introName, crossFadeTime, 0f));
-        StartCoroutine(ChangeMusicInSec(new string[] { introName }, mainLoopName, crossFadeTime, introTime));
-    }
-
-    void PlayThemeBGM(float crossFadeTime)
-    {
-        StopCoroutine(ChangeMusicInSec(new string[] { introName }, mainLoopName, crossFadeTime, introTime));
-        StopCoroutine(ChangeMusicInSec(new string[] { themeName }, mainLoopName, crossFadeTime, themeTime));
-
-        StartCoroutine(ChangeMusicInSec(new string[] { titleName, mainLoopName, introName }, themeName, crossFadeTime, 0f));
-        StartCoroutine(ChangeMusicInSec(new string[] { themeName }, mainLoopName, crossFadeTime, themeTime));
-    }
-
-    IEnumerator ChangeMusicInSec(string[] previousMusics, string targetMusic, float crossFadeTime, float waitTime)
-    {
-        yield return new WaitForSecondsRealtime(waitTime);
-
-        for (int i = 0; i < previousMusics.Length; i++)
-            audioManager.StopPlayCertainAudio(previousMusics[i], crossFadeTime);
-
-        audioManager.PlayIfHasAudio(targetMusic, crossFadeTime);
-    }
 
     IEnumerator ResumeHUDInSec(float waitTime)
     {
@@ -328,8 +303,11 @@ public class Level1 : Level
         audioManager.StopPlayCertainAudio(toyMusic, 1f);
     }
 
+
     void PlayStartAnim()
-    {       
+    {
+        audioManager.PlayIfHasMusic(introName);
+
         toggleHUD.HideHUD();
         inventoryPanel.Close();
         blockPanel.gameObject.SetActive(true);
@@ -357,7 +335,7 @@ public class Level1 : Level
 
     void PlayS1FailedAnim()
     {
-        PlayThemeBGM(.2f);
+        audioManager.PlayIfHasMusic(themeName);
 
         toggleHUD.HideHUD();
         inventoryPanel.Close();
@@ -386,7 +364,7 @@ public class Level1 : Level
 
     void PlayS1WinAnim()
     {
-        PlayThemeBGM(.2f);
+        audioManager.PlayIfHasMusic(themeName);
 
         toggleHUD.HideHUD();
         inventoryPanel.Close();
@@ -418,7 +396,7 @@ public class Level1 : Level
 
     void PlayS2NormalAnim()
     {
-        PlayThemeBGM(.2f);
+        audioManager.PlayIfHasMusic(themeName);
 
         toggleHUD.HideHUD();
         inventoryPanel.Close();
@@ -454,7 +432,7 @@ public class Level1 : Level
 
     void PlayS2DiaryCloseAnim()
     {
-        PlayThemeBGM(.2f);
+        audioManager.PlayIfHasMusic(themeName);
 
         toggleHUD.HideHUD();
         inventoryPanel.Close();
@@ -490,7 +468,7 @@ public class Level1 : Level
 
     void PlayS2DiaryOpenAnim()
     {
-        PlayThemeBGM(.2f);
+        audioManager.PlayIfHasMusic(themeName);
 
         toggleHUD.HideHUD();
         inventoryPanel.Close();
@@ -526,7 +504,7 @@ public class Level1 : Level
 
     void PlayS2WinAnim()
     {
-        PlayThemeBGM(.2f);
+        audioManager.PlayIfHasMusic(themeName);
 
         // play s2 win anim
         toggleHUD.HideHUD();
