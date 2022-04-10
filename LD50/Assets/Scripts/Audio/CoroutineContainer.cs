@@ -28,11 +28,18 @@ public class CoroutineContainer : MonoBehaviour
         audioSource.enabled = true;
     }
 
-    public IEnumerator ChangeCurrentBGMString(float delayTime)
+    public IEnumerator ChangeCurrentMelodyString(float delayTime)
     {
         yield return new WaitForSecondsRealtime(delayTime);
 
-        audioManager.currentBGM = audioSourceKey;
+        audioManager.currentMelody = audioSourceKey;
+    }
+
+    public IEnumerator ChangeCurrentAccompanyString(float delayTime)
+    {
+        yield return new WaitForSecondsRealtime(delayTime);
+
+        audioManager.currentAccompany = audioSourceKey;
     }
 
 }

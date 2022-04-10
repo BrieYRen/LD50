@@ -23,7 +23,8 @@ public class AnykeyToStart : MonoBehaviour
     bool isLoading = false;
 
     AudioManager audioManager;
-    string bgmName = "BGMIntro";
+    string bgmMelodyName = "BGMIntroMelody";
+    string bgmAccompanyName = "BGMIntroAccompany";
 
 
     private void Start()
@@ -45,7 +46,7 @@ public class AnykeyToStart : MonoBehaviour
     IEnumerator PlayBGM(float delayTime)
     {
         yield return new WaitForSecondsRealtime(delayTime);
-        audioManager.PlayIfHasMusic(bgmName);
+        audioManager.PlayIfHasTwoLayerMusic(bgmMelodyName, bgmAccompanyName, true, 0);
     }
 
 

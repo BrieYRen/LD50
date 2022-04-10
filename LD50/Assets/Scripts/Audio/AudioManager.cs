@@ -23,15 +23,25 @@ public class AudioManager : MonoBehaviour
     Dictionary<string, AudioSource> audioDict;
 
     /// <summary>
-    /// the current playing background music's name
+    /// the current playing background music melody layer's name
     /// </summary>
-    public string currentBGM = "";
+    [HideInInspector]
+    public string currentMelody = "";
+
+    /// <summary>
+    /// the current playing background music accompany layer's name
+    /// </summary>
+    [HideInInspector]
+    public string currentAccompany = "";
 
     [Tooltip("how many beats per minute in bgm")]
     [SerializeField]
     double bgmTempo = 100;
 
+    [SerializeField]
     double timeSignatureFirstNum = 3;
+
+    [SerializeField]
     double timeSignatureSecondNum = 4;
 
 
@@ -234,45 +244,71 @@ public class AudioManager : MonoBehaviour
         yield break;
     }
 
+
     /// <summary>
-    /// begin to play a loop music
+    /// begin to play a two layer background music
     /// </summary>
-    /// <param name="loopName"></param>
-    public void PlayIfHasMusic(string loopName)
+    /// <param name="melodyLayer"></param>
+    /// <param name="accompanyLayer"></param>
+    /// <param name="melodyFirst"></param>
+    public void PlayIfHasTwoLayerMusic(string melodyLayer, string accompanyLayer, bool melodyFirst, int delayBars)
     {
-        if (loopName == null || !audioDict.ContainsKey(loopName))
+        double offset = .2d;
+
+        if (melodyLayer == null || accompanyLayer == null || !audioDict.ContainsKey(melodyLayer) || !audioDict.ContainsKey(accompanyLayer))
             return;
 
-        if (currentBGM == "")
+        if (currentMelody == "")
         {
-            audioDict[loopName].PlayScheduled(AudioSettings.dspTime + .2d);
-            currentBGM = loopName;
+            audioDict[melodyLayer].PlayScheduled(AudioSettings.dspTime + offset);
+            audioDict[accompanyLayer].PlayScheduled(AudioSettings.dspTime + offset);
+
+            currentMelody = melodyLayer;
+            currentAccompany = accompanyLayer;
         }
         else
-        {           
-            double toPlayTime = CalculatePlayTime(audioDict[currentBGM], bgmTempo, timeSignatureFirstNum, timeSignatureSecondNum);
-            float delayTime = (float)(toPlayTime - AudioSettings.dspTime);
+        {
+            double barDuration = CalculateBarTime(bgmTempo, timeSignatureFirstNum);
+            double firstToPlayTime = CalculatePlayTime(audioDict[currentMelody], bgmTempo, timeSignatureFirstNum, timeSignatureSecondNum) + offset;
+            double secondToPlayTime = firstToPlayTime + barDuration * delayBars;
+            
 
-            if (loopName == currentBGM)
+            double melodyToPlayTime = melodyFirst ? firstToPlayTime : secondToPlayTime;
+            double accompanyToPlayTime = melodyFirst ? secondToPlayTime : firstToPlayTime;
+
+            float melodyDelayTime = (float)(melodyToPlayTime - AudioSettings.dspTime);
+            float accompanyDelayTime = (float)(accompanyToPlayTime - AudioSettings.dspTime);
+
+            var melodyContainer = audioDict[melodyLayer].gameObject.GetComponent<CoroutineContainer>();
+            var accompanyContainer = audioDict[accompanyLayer].gameObject.GetComponent<CoroutineContainer>();
+
+            if (melodyLayer == currentMelody)
             {
-                var container = audioDict[loopName].gameObject.GetComponent<CoroutineContainer>();
-                StartCoroutine(container.ReplayMusicInSec(delayTime));
+                
+                StartCoroutine(melodyContainer.ReplayMusicInSec(melodyDelayTime));               
+                StartCoroutine(accompanyContainer.ReplayMusicInSec(accompanyDelayTime));
             }
             else
             {
-                if (audioDict[loopName].isPlaying)
-                    audioDict[loopName].Stop();
+                if (audioDict[melodyLayer].isPlaying)
+                    audioDict[melodyLayer].Stop();
 
-                audioDict[currentBGM].SetScheduledEndTime(toPlayTime);
-                audioDict[loopName].PlayScheduled(toPlayTime);
+                if (audioDict[accompanyLayer].isPlaying)
+                    audioDict[accompanyLayer].Stop();
 
-                var container = audioDict[loopName].gameObject.GetComponent<CoroutineContainer>();
-                StartCoroutine(container.ChangeCurrentBGMString(delayTime));
+                audioDict[currentMelody].SetScheduledEndTime(melodyToPlayTime);
+                audioDict[currentAccompany].SetScheduledEndTime(accompanyToPlayTime);
+
+                audioDict[melodyLayer].PlayScheduled(melodyToPlayTime);
+                audioDict[accompanyLayer].PlayScheduled(accompanyToPlayTime);
+
+                StartCoroutine(melodyContainer.ChangeCurrentMelodyString(melodyDelayTime));
+                StartCoroutine(accompanyContainer.ChangeCurrentAccompanyString(accompanyDelayTime));
             }
-                           
+
         }
-               
     }
+
 
     /// <summary>
     /// calculate when to change music so as to change it seamlessly
@@ -284,13 +320,18 @@ public class AudioManager : MonoBehaviour
     /// <returns></returns>
     double CalculatePlayTime(AudioSource currentAudio, double currentTempo, double timeSignatureFirstNum, double timeSignatureSecondNum)
     {
-        double barDuration = (60d / currentTempo) * timeSignatureFirstNum; //* (timeSignatureFirstNum / timeSignatureSecondNum);
+        double barDuration = CalculateBarTime(currentTempo, timeSignatureFirstNum);
         double remainder = ((double)currentAudio.timeSamples / currentAudio.clip.frequency) % barDuration;
         double nextBarTime = AudioSettings.dspTime + barDuration - remainder;
 
         return nextBarTime;
     }
 
+    double CalculateBarTime(double currentTempo, double timeSignatureFirstNum)
+    {
+        double barDuaration = (60d / currentTempo) * timeSignatureFirstNum; //* (timeSignatureFirstNum / timeSignatureSecondNum);
 
+        return barDuaration;
+    }
 
 }
