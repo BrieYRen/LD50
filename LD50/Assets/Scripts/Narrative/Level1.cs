@@ -181,8 +181,10 @@ public class Level1 : Level
     const string themeMelodyName = "BGMThemeMelody";
     const string themeAccompanyName = "BGMThemeAccompany";
 
-    const int introDelayBars = 1;
-    const int themeDelayBars = 3;
+    string[] bgmLayers = new string[] { "BGMIntroMelody", "BGMIntroAccompany", "BGMThemeMelody", "BGMThemeAccompany", "BGMTitleMelody", "BGMTitleAccompany" };
+
+    const int introDelayBars = 0;
+    const int themeDelayBars = 0;
 
     const string toyMusic = "Toy";
 
@@ -303,14 +305,12 @@ public class Level1 : Level
 
         audioManager.StopPlayCertainAudio(toyMusic, 1f);
 
-        for (int i = 0; i < inventory.items.Count; i++)
-            inventory.Removed(inventory.items[i]);
     }
 
 
     void PlayStartAnim()
     {
-        //audioManager.PlayIfHasTwoLayerMusic(introMelodyName, introAccompanyName, true, introDelayBars);
+        audioManager.PlayIfHasTwoLayerMusic(introMelodyName, introAccompanyName, true, introDelayBars);
         
         toggleHUD.HideHUD();
         inventoryPanel.Close();

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,6 +27,7 @@ public class Level2 : Level
     ToggleHUD toggleHUD;
     BlockPanel blockPanel;
     InventoryPanel inventoryPanel;
+    Inventory inventory;
 
     LevelManager levelManager;
 
@@ -42,6 +42,10 @@ public class Level2 : Level
     [SerializeField]
     AnimFrames[] animatedStartAnims;
 
+    [SerializeField]
+    AnimFrames coupleTVAnims;
+
+    const float animRateLoop = 1.667f;
     const float animRateCat = 5f;
 
     const float s1StartAnimTime = 8.5f; 
@@ -52,24 +56,55 @@ public class Level2 : Level
 
     [Header("S1 Win Anim")]
 
-    const string laserOnID = "LaserOn";
+    [SerializeField]
+    string laserOnID = "LaserOn";
 
     [SerializeField]
     AnimFrames[] activedS1Anims;
 
     [SerializeField]
     AnimFrames[] animatedS1Anims;
-   
-    const float s1WinAnimTime = 0f; // todo
+
+    const float s1WinAnimTime = 15.5f; 
 
     const int s1WinStartFrame = 0;
-    const int s1WinEndFrame = 0; //todo
-    const int s1WinFrozeFrame = 0; // todo
+    const int s1WinEndFrame = 73; 
+    const int s1WinFrozeFrame = 25; 
 
-    [Header("S2 Anim")]
+    [Header("S2 Failed Anim")]
 
     [SerializeField]
     StateMachine tvStateMachine;
+
+    string tvFishID = "TVFish";
+    
+    [SerializeField]
+    AnimFrames cafeTVAnim;
+
+    string tvCafeID = "TVCafe";
+
+    const float s2FailAnimTime = 10.5f;
+
+    const int s2FailStartFrame = 25;
+    const int s2FailEndFrame = 73;
+    const int s2FailFrozeFrame = 25;
+
+    [Header("S2 Win Anim")]
+
+    [SerializeField]
+    AnimFrames fishTVAnim;
+
+    [SerializeField]
+    AnimFrames[] activedS2WinAnims;
+
+    [SerializeField]
+    AnimFrames[] animatedS2WinAnims;
+
+    const float s2WinAnimTime = 12.5f;
+
+    const int s2WinStartFrame = 0; 
+    const int s2WinEndFrame = 60; 
+    const int s2WinFrozeFrame = 60; 
 
     SceneLoader sceneLoader;
 
@@ -82,8 +117,8 @@ public class Level2 : Level
     const string themeMelodyName = "BGMThemeMelody";
     const string themeAccompanyName = "BGMThemeAccompany";
 
-    const int introDelayBars = 1;
-    const int themeDelayBars = 3;
+    const int introDelayBars = 0;
+    const int themeDelayBars = 0;
 
     #endregion
 
@@ -97,6 +132,10 @@ public class Level2 : Level
         blockPanel = GameManager.instance.blockPanel;
         inventoryPanel = GameManager.instance.inventoryPanel;
         canvasOverride = animCanvasGroup.gameObject.GetComponent<Canvas>();
+
+        inventory = GameManager.instance.inventoryManager;
+        for (int i = 0; i < inventory.items.Count; i++)
+            inventory.Removed(inventory.items[i]);
 
         sceneLoader = GameManager.instance.sceneLoader;
         audioManager = GameManager.instance.audioManager;
@@ -148,6 +187,26 @@ public class Level2 : Level
             toFrozeAnims[i].GetComponent<Image>().sprite = toFrozeAnims[i].sprites[frozeFrame];
     }
 
+    void PlayAnimLoop(AnimFrames toPlayAnim, int startFrame, int endFrame, float animRate)
+    {
+        if (toPlayAnim.isActiveAndEnabled)
+            toPlayAnim.AlwaysPlay(startFrame, endFrame, animRate);               
+    }
+
+    IEnumerator StopPlayAnimLoop(AnimFrames toPlayAnim, float waitTime)
+    {
+        yield return new WaitForSecondsRealtime(waitTime);
+
+        toPlayAnim.StopPlay();
+    }
+
+    IEnumerator LoadNextScene(float waitTime)
+    {
+        yield return new WaitForSecondsRealtime(waitTime);
+
+        sceneLoader.LoadNextScene();
+    }
+
     void PlayFirstAnim()
     {
         audioManager.PlayIfHasTwoLayerMusic(introMelodyName, introAccompanyName, true, introDelayBars);
@@ -156,9 +215,11 @@ public class Level2 : Level
         ActivateCertainAnims(activedStartAnims);
 
         PlayCertainAnims(animatedStartAnims, s1StartStartFrame, s1StartEndFrame, animRateCat);
-        // todo: play tv couple
+        PlayAnimLoop(coupleTVAnims, 0, coupleTVAnims.sprites.Length - 1, animRateLoop);
 
+        StartCoroutine(StopPlayAnimLoop(coupleTVAnims, s1StartAnimTime));
         StartCoroutine(FrozeAtCertainFrame(animatedStartAnims, s1StartFrozeFrame, s1StartAnimTime));
+      
         StartCoroutine(UISettingAfterAnim(s1StartAnimTime));
     }
 
@@ -170,16 +231,61 @@ public class Level2 : Level
         ActivateCertainAnims(activedStartAnims);
 
         PlayCertainAnims(animatedStartAnims, s1StartStartFrame, s1StartEndFrame, animRateCat);
+        PlayAnimLoop(coupleTVAnims, 0, coupleTVAnims.sprites.Length - 1, animRateLoop);
 
+        StartCoroutine(StopPlayAnimLoop(coupleTVAnims, s1StartAnimTime));
         StartCoroutine(FrozeAtCertainFrame(animatedStartAnims, s1StartFrozeFrame, s1StartAnimTime));
         StartCoroutine(UISettingAfterAnim(s1StartAnimTime));
     }
 
     void PlayS1WinAnim()
     {
+        audioManager.PlayIfHasTwoLayerMusic(introMelodyName, introAccompanyName, true, introDelayBars);
+
+        UISettingsBeforeAnim();
+        ActivateCertainAnims(activedS1Anims);
+
+        PlayCertainAnims(animatedS1Anims, s1WinStartFrame, s1WinEndFrame, animRateCat);
+        PlayAnimLoop(coupleTVAnims, 0, coupleTVAnims.sprites.Length - 1, animRateLoop);
+
+        StartCoroutine(StopPlayAnimLoop(coupleTVAnims, s1WinAnimTime));
+        StartCoroutine(FrozeAtCertainFrame(animatedS1Anims, s1WinFrozeFrame, s1WinAnimTime));
+        StartCoroutine(UISettingAfterAnim(s1WinAnimTime));
+
+        tvStateMachine.GetComponent<Button>().interactable = true;
+    }
+
+    void PlayS2FailAnim()
+    {
         audioManager.PlayIfHasTwoLayerMusic(themeMelodyName, themeAccompanyName, false, themeDelayBars);
 
+        UISettingsBeforeAnim();
+        ActivateCertainAnims(activedS1Anims);
 
+        PlayCertainAnims(animatedS1Anims, s2FailStartFrame, s2FailEndFrame, animRateCat);
+
+        AnimFrames toPlayTVAnim = tvStateMachine.CurrentState.StateID == tvCafeID ? cafeTVAnim : coupleTVAnims;
+        PlayAnimLoop(toPlayTVAnim, 0, toPlayTVAnim.sprites.Length - 1, animRateLoop);
+
+        StartCoroutine(StopPlayAnimLoop(toPlayTVAnim, s2FailAnimTime));
+        StartCoroutine(FrozeAtCertainFrame(animatedS1Anims, s2FailFrozeFrame, s2FailAnimTime));
+        StartCoroutine(UISettingAfterAnim(s2FailAnimTime));
+    }
+
+    void PlayS2WinAnim()
+    {
+        audioManager.PlayIfHasTwoLayerMusic(introMelodyName, introAccompanyName, true, introDelayBars);
+
+        UISettingsBeforeAnim();
+        ActivateCertainAnims(activedS2WinAnims);
+
+        PlayCertainAnims(animatedS2WinAnims, s2WinStartFrame, s2WinEndFrame, animRateCat);
+        PlayAnimLoop(fishTVAnim, 0, fishTVAnim.sprites.Length - 1, animRateLoop);
+
+        StartCoroutine(FrozeAtCertainFrame(animatedS2WinAnims, s2WinFrozeFrame, s2WinAnimTime));
+        StartCoroutine(UISettingAfterAnim(s2WinAnimTime));
+
+        StartCoroutine(LoadNextScene(s2WinAnimTime + 2f));
     }
 
 
@@ -196,7 +302,10 @@ public class Level2 : Level
         }
         else
         {
-
+            if (tvStateMachine.CurrentState.StateID != tvFishID)
+                currentStage = 3;
+            else
+                currentStage = 4;
         }
 
         switch (currentStage)
@@ -206,6 +315,15 @@ public class Level2 : Level
                 break;
             case 1:
                 PlayS1FailAnim();
+                break;
+            case 2:
+                PlayS1WinAnim();
+                break;
+            case 3:
+                PlayS2FailAnim();
+                break;
+            case 4:
+                PlayS2WinAnim();
                 break;
         }
     }

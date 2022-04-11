@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -58,7 +57,7 @@ public class AnimFrames : MonoBehaviour
             image.sprite = sprites[index];
             index++;
 
-            if (index == endIndex - 1)
+            if (index == endIndex)
             {
                 if (alwaysAnim)
                     index = startFrame;

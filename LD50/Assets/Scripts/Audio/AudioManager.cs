@@ -34,15 +34,14 @@ public class AudioManager : MonoBehaviour
     [HideInInspector]
     public string currentAccompany = "";
 
-    [Tooltip("how many beats per minute in bgm")]
+    [Tooltip("the tempo of the bgm, how many beats per minute")]
     [SerializeField]
-    double bgmTempo = 100;
+    double beatsPerMin = 100;
 
+    [Tooltip("the first number of the time signature of the bgm")]
     [SerializeField]
-    double timeSignatureFirstNum = 3;
-
-    [SerializeField]
-    double timeSignatureSecondNum = 4;
+    double beatsPerBar = 3;
+ 
 
 
     private void Start()
@@ -244,7 +243,7 @@ public class AudioManager : MonoBehaviour
         yield break;
     }
 
-
+    
     /// <summary>
     /// begin to play a two layer background music
     /// </summary>
@@ -253,26 +252,23 @@ public class AudioManager : MonoBehaviour
     /// <param name="melodyFirst"></param>
     public void PlayIfHasTwoLayerMusic(string melodyLayer, string accompanyLayer, bool melodyFirst, int delayBars)
     {
-        double offset = .2d;
-
         if (melodyLayer == null || accompanyLayer == null || !audioDict.ContainsKey(melodyLayer) || !audioDict.ContainsKey(accompanyLayer))
             return;
 
         if (currentMelody == "")
         {
-            audioDict[melodyLayer].PlayScheduled(AudioSettings.dspTime + offset);
-            audioDict[accompanyLayer].PlayScheduled(AudioSettings.dspTime + offset);
+            audioDict[melodyLayer].PlayScheduled(AudioSettings.dspTime);
+            audioDict[accompanyLayer].PlayScheduled(AudioSettings.dspTime);
 
             currentMelody = melodyLayer;
             currentAccompany = accompanyLayer;
         }
         else
         {
-            double barDuration = CalculateBarTime(bgmTempo, timeSignatureFirstNum);
-            double firstToPlayTime = CalculatePlayTime(audioDict[currentMelody], bgmTempo, timeSignatureFirstNum, timeSignatureSecondNum) + offset;
+            double barDuration = CalculateBarTime(beatsPerMin, beatsPerBar);
+            double firstToPlayTime = CalculatePlayTime(audioDict[currentMelody], beatsPerMin, beatsPerBar);
             double secondToPlayTime = firstToPlayTime + barDuration * delayBars;
             
-
             double melodyToPlayTime = melodyFirst ? firstToPlayTime : secondToPlayTime;
             double accompanyToPlayTime = melodyFirst ? secondToPlayTime : firstToPlayTime;
 
@@ -283,18 +279,23 @@ public class AudioManager : MonoBehaviour
             var accompanyContainer = audioDict[accompanyLayer].gameObject.GetComponent<CoroutineContainer>();
 
             if (melodyLayer == currentMelody)
-            {
-                
+            {              
                 StartCoroutine(melodyContainer.ReplayMusicInSec(melodyDelayTime));               
                 StartCoroutine(accompanyContainer.ReplayMusicInSec(accompanyDelayTime));
             }
             else
             {
                 if (audioDict[melodyLayer].isPlaying)
+                {
                     audioDict[melodyLayer].Stop();
-
+                    melodyContainer.StopAllCoroutines();
+                }
+                    
                 if (audioDict[accompanyLayer].isPlaying)
+                {
                     audioDict[accompanyLayer].Stop();
+                    accompanyContainer.StopAllCoroutines();
+                }
 
                 audioDict[currentMelody].SetScheduledEndTime(melodyToPlayTime);
                 audioDict[currentAccompany].SetScheduledEndTime(accompanyToPlayTime);
@@ -305,7 +306,6 @@ public class AudioManager : MonoBehaviour
                 StartCoroutine(melodyContainer.ChangeCurrentMelodyString(melodyDelayTime));
                 StartCoroutine(accompanyContainer.ChangeCurrentAccompanyString(accompanyDelayTime));
             }
-
         }
     }
 
@@ -318,7 +318,7 @@ public class AudioManager : MonoBehaviour
     /// <param name="timeSignatureFirstNum"></param>
     /// <param name="timeSignatureSecondNum"></param>
     /// <returns></returns>
-    double CalculatePlayTime(AudioSource currentAudio, double currentTempo, double timeSignatureFirstNum, double timeSignatureSecondNum)
+    double CalculatePlayTime(AudioSource currentAudio, double currentTempo, double timeSignatureFirstNum)
     {
         double barDuration = CalculateBarTime(currentTempo, timeSignatureFirstNum);
         double remainder = ((double)currentAudio.timeSamples / currentAudio.clip.frequency) % barDuration;
@@ -333,5 +333,6 @@ public class AudioManager : MonoBehaviour
 
         return barDuaration;
     }
+
 
 }
