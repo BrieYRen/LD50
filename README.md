@@ -5,6 +5,6 @@ Game made in 3 weeks for Ludum Dare 50 Game Jam Extra with the theme "Delay the 
 
 ## Credits:
 
-**Brie** : Programmer, Technical Artist, Level Designer, Narrative Designer
-**Owl** : Concept Artist, Level Artist, UI Artist, Animator, Narrative Designer
-**Sybil** : Music Composer, Sound Designer, Narrative Designer
+**Brie** : Programmer, Technical Artist, Level Designer, Narrative Designer      
+**Owl** : Concept Artist, Level Artist, UI Artist, Animator, Narrative Designer      
+**Sybil** : Music Composer, Sound Designer, Narrative Designer      

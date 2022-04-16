@@ -1667,7 +1667,7 @@ MonoBehaviour:
   papernCupBG: {fileID: 1798143295}
   activedStartAnims: []
   animatedStartAnims: []
-  ipadStateMachine: {fileID: 0}
+  ipadStateMachine: {fileID: 240412736}
 --- !u!1 &874742739
 GameObject:
   m_ObjectHideFlags: 0
