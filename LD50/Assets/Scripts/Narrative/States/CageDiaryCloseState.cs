@@ -1,7 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CageDiaryOpenState : State
+/// <summary>
+/// this is a derived class from the base class State for a state of the Cage state machine in level 1
+/// </summary>
+[RequireComponent(typeof(CanvasGroup))]
+public class CageDiaryCloseState : State
 {
     [Header("Specific Settings")]
 
@@ -9,7 +13,7 @@ public class CageDiaryOpenState : State
     Image image;
 
     [SerializeField]
-    Button pickupOpenDiaryButton;
+    Button pickupCloseDiaryButton;
 
     CanvasGroup canvasGroup;
 
@@ -18,13 +22,12 @@ public class CageDiaryOpenState : State
     {
         canvasGroup = GetComponent<CanvasGroup>();
     }
-
     public override void DoWhenEnter()
     {
         base.DoWhenEnter();
 
         image.enabled = true;
-        pickupOpenDiaryButton.interactable = true;
+        pickupCloseDiaryButton.interactable = true;
 
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
@@ -36,7 +39,7 @@ public class CageDiaryOpenState : State
         base.DoWhenExit();
 
         image.enabled = false;
-        pickupOpenDiaryButton.interactable = false;
+        pickupCloseDiaryButton.interactable = false;
 
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;

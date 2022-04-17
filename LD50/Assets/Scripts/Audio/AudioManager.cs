@@ -5,7 +5,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// this is the script to manage all sounds in game including init 2d sounds when game start, init 3d sounds when a scene loaded and release them when a scene is unloaded, and play or stop playing certain sound with fade effect
+/// this is the script to manage all sounds in game including init 2d sounds when game start, 
+/// init 3d sounds when a scene loaded and release them when a scene is unloaded, 
+/// play or stop playing certain sound with fade effect,
+/// and change a two-layer background music seamlessly at the end of the current bar
 /// </summary>
 public class AudioManager : MonoBehaviour
 {
@@ -42,7 +45,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     double beatsPerBar = 3;
  
-
 
     private void Start()
     {
@@ -86,7 +88,8 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// this should be called by the scripts which will call PlayIfHasAudio() method to play a spatial sound later when a new scene is loaded 
+    /// this should be called by the scripts which will call PlayIfHasAudio() method 
+    /// to play a spatial sound later when a new scene is loaded 
     /// </summary>
     /// <param name="gameObject"></param>
     public string Init3DSound(string newName, GameObject gameObject)
@@ -135,7 +138,8 @@ public class AudioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// when a previous scene is unloaded, find out all null spacial audio sources in that unloaded scene and remove them from the audio dictionary
+    /// when a previous scene is unloaded, find out all null spacial audio sources in that unloaded scene
+    /// and remove them from the audio dictionary
     /// </summary>
     /// <param name="scene"></param>
     /// <param name="mode"></param>
@@ -245,7 +249,7 @@ public class AudioManager : MonoBehaviour
 
     
     /// <summary>
-    /// begin to play a two layer background music
+    /// begin to play a two-layer background music
     /// </summary>
     /// <param name="melodyLayer"></param>
     /// <param name="accompanyLayer"></param>
@@ -311,7 +315,7 @@ public class AudioManager : MonoBehaviour
 
 
     /// <summary>
-    /// calculate when to change music so as to change it seamlessly
+    /// calculate when to change music so as to change it seamlessly at the end of current bar
     /// </summary>
     /// <param name="currentAudio"></param>
     /// <param name="currentTempo"></param>

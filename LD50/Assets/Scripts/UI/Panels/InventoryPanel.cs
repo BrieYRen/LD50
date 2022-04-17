@@ -1,8 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// derived class from the base UIPanel class for inventory ui panel
+/// </summary>
 public class InventoryPanel : UIPanel
 {
     [Header("Inventory")]
@@ -27,6 +28,9 @@ public class InventoryPanel : UIPanel
         UpdateUI();
     }
 
+    /// <summary>
+    /// update the inventory ui panel and its slots when the items list in inventory manager has changed
+    /// </summary>
     void UpdateUI()
     {
         for (int i = 0; i < inventorySlots.Length; i++)
@@ -38,6 +42,10 @@ public class InventoryPanel : UIPanel
         }
     }
 
+    /// <summary>
+    /// close the ui panel when a new scene is loaded
+    /// </summary>
+    /// <param name="scene"></param>
     void OnSceneUnloaded(Scene scene)
     {
         this.Close();

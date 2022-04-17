@@ -1,7 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// this is a derived class from the base class PlaceItem for placing two specific items diaryOpen and diaryClose
+/// at a specific object cage state machine in level 1, use throwaway code for the time limit in Ludum Dare
+/// </summary>
 public class PlaceDiary : PlaceItem
 {
     [Header("Diary Settings")]
@@ -43,8 +45,6 @@ public class PlaceDiary : PlaceItem
     public override void BackNormal()
     {
         base.BackNormal();
-
-        //cagePlaceArea.blocksRaycasts = false;
 
         if (hasPlaced)
         {

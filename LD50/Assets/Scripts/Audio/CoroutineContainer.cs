@@ -1,7 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// this script will be attach to each music source so as to run coroutines by AudioManager
+/// </summary>
 [RequireComponent(typeof(AudioSource))]
 public class CoroutineContainer : MonoBehaviour
 {
@@ -18,16 +20,24 @@ public class CoroutineContainer : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    /// <summary>
+    /// public coroutine to replay the music at given time
+    /// </summary>
+    /// <param name="delayTime"></param>
+    /// <returns></returns>
     public IEnumerator ReplayMusicInSec(float delayTime)
     {
-        Debug.Log("coroutine begin to count delay time " + delayTime);
         yield return new WaitForSecondsRealtime(delayTime);
 
-        Debug.Log("coroutine is running");
         audioSource.enabled = false;
         audioSource.enabled = true;
     }
 
+    /// <summary>
+    /// public coroutine to change the currentMelody variable in audio manager
+    /// </summary>
+    /// <param name="delayTime"></param>
+    /// <returns></returns>
     public IEnumerator ChangeCurrentMelodyString(float delayTime)
     {
         yield return new WaitForSecondsRealtime(delayTime);
@@ -35,6 +45,11 @@ public class CoroutineContainer : MonoBehaviour
         audioManager.currentMelody = audioSourceKey;
     }
 
+    /// <summary>
+    /// public coroutine to change the currentAccompany variable in audio manager
+    /// </summary>
+    /// <param name="delayTime"></param>
+    /// <returns></returns>
     public IEnumerator ChangeCurrentAccompanyString(float delayTime)
     {
         yield return new WaitForSecondsRealtime(delayTime);

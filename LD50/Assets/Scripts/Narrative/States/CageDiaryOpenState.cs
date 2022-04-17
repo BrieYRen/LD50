@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CageNormalState : State
+/// <summary>
+/// this is a derived class from the base class State for a state of the Cage state machine in level 1
+/// </summary>
+public class CageDiaryOpenState : State
 {
     [Header("Specific Settings")]
 
@@ -11,7 +12,7 @@ public class CageNormalState : State
     Image image;
 
     [SerializeField]
-    Button craftButton;
+    Button pickupOpenDiaryButton;
 
     CanvasGroup canvasGroup;
 
@@ -19,7 +20,6 @@ public class CageNormalState : State
     private void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
-
     }
 
     public override void DoWhenEnter()
@@ -27,7 +27,7 @@ public class CageNormalState : State
         base.DoWhenEnter();
 
         image.enabled = true;
-        craftButton.interactable = true;
+        pickupOpenDiaryButton.interactable = true;
 
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
@@ -39,10 +39,11 @@ public class CageNormalState : State
         base.DoWhenExit();
 
         image.enabled = false;
-        craftButton.interactable = false;
+        pickupOpenDiaryButton.interactable = false;
 
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
         canvasGroup.alpha = 0;
     }
+
 }

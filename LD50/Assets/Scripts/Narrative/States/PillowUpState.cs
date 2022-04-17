@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// this is a derived class from the base class State for one state of a Pillow state machine in level 1
+/// </summary>
 public class PillowUpState : State
 {
     [SerializeField]

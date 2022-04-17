@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
+/// <summary>
+/// the script to hide or show HUD before or after cutscenes
+/// </summary>
 [RequireComponent(typeof(CanvasGroup))]
 public class ToggleHUD : MonoBehaviour
 {
@@ -13,6 +13,9 @@ public class ToggleHUD : MonoBehaviour
         canvasGroup = GetComponent<CanvasGroup>();
     }
 
+    /// <summary>
+    /// public method to show the hidden HUD
+    /// </summary>
     public void ShowHUD()
     {
         canvasGroup.alpha = 1;
@@ -20,6 +23,9 @@ public class ToggleHUD : MonoBehaviour
         canvasGroup.blocksRaycasts = true;
     }
 
+    /// <summary>
+    /// public method to hide the HUD
+    /// </summary>
     public void HideHUD()
     {
         canvasGroup.alpha = 0;

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -9,6 +8,8 @@ using TMPro;
 /// </summary>
 public class Level1 : Level
 {
+    #region Variables
+
     [Header("Inventory Items")]
 
     [SerializeField]
@@ -187,6 +188,8 @@ public class Level1 : Level
     const int themeDelayBars = 0;
 
     const string toyMusic = "Toy";
+
+    #endregion
 
 
     private void Start()

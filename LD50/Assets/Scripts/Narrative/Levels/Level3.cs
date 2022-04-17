@@ -1,8 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// throwaway code for level three's specific narrative requirements
+/// </summary>
 public class Level3 : Level
 {
     [Header("Animations")]

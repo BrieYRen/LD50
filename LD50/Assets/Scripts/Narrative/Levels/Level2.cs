@@ -134,8 +134,8 @@ public class Level2 : Level
         canvasOverride = animCanvasGroup.gameObject.GetComponent<Canvas>();
 
         inventory = GameManager.instance.inventoryManager;
-        for (int i = 0; i < inventory.items.Count; i++)
-            inventory.Removed(inventory.items[i]);
+        while (inventory.items.Count > 0)
+            inventory.Removed(inventory.items[0]);
 
         sceneLoader = GameManager.instance.sceneLoader;
         audioManager = GameManager.instance.audioManager;

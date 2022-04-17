@@ -1,10 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// this script is to toggle the interactable status of the interactable objects in levels
+/// </summary>
 public class ShowInteractChoices : MonoBehaviour
 {
+    [Tooltip("drag and drop the interactable choices buttons here")]
     [SerializeField]
     Button[] buttons;
 
@@ -20,6 +22,9 @@ public class ShowInteractChoices : MonoBehaviour
         handler = GameManager.instance.placeItemHandler;
     }
 
+    /// <summary>
+    /// public method to toggle the interactable status
+    /// </summary>
     public void OnClickInteract()
     {
         if (craftManager.CheckIfCrafting() || handler.CheckIfPlacing())

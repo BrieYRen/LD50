@@ -5,13 +5,13 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class AnimFrames : MonoBehaviour
 {
+    [Tooltip("Drag and drop the to-play anim frames here")]
     public Sprite[] sprites;
 
     const float defaultFrameRate = 5;
     float interval;
 
     Image image;
-
 
 
     private void Awake()
@@ -21,6 +21,12 @@ public class AnimFrames : MonoBehaviour
         interval = 1 / defaultFrameRate;
     }
 
+    /// <summary>
+    /// public method to play the anim from start frame to end frame at frame rate for once
+    /// </summary>
+    /// <param name="startFrame"></param>
+    /// <param name="endFrame"></param>
+    /// <param name="frameRate"></param>
     public void PlayOnce(int startFrame, int endFrame, float frameRate)
     {
         interval = 1 / frameRate;
@@ -28,6 +34,12 @@ public class AnimFrames : MonoBehaviour
         StartCoroutine(UpdateFrame(interval, startFrame, endFrame, false));
     }
 
+    /// <summary>
+    /// public method to play the anim from start frame to end frame at frame rate looply
+    /// </summary>
+    /// <param name="startFrame"></param>
+    /// <param name="endFrame"></param>
+    /// <param name="frameRate"></param>
     public void AlwaysPlay(int startFrame, int endFrame, float frameRate)
     {
         interval = 1 / frameRate;
@@ -35,6 +47,9 @@ public class AnimFrames : MonoBehaviour
         StartCoroutine(UpdateFrame(interval, startFrame, endFrame, true));
     }
 
+    /// <summary>
+    /// public method to stop this anim
+    /// </summary>
     public void StopPlay()
     {
         StopAllCoroutines();

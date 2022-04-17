@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// this is a derived class from the base class State for a state of the Cage state machine in level 1
+/// </summary>
 public class CageOpenState : State
 {
     [Header("Specific Settings")]

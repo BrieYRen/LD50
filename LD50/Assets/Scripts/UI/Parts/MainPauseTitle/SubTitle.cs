@@ -1,7 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// script to be attach to each level's sub-title
+/// </summary>
 public class SubTitle : MonoBehaviour
 {
     SceneLoader sceneLoader;
@@ -24,6 +26,9 @@ public class SubTitle : MonoBehaviour
         toggleHUD.ShowHUD();
     }
 
+    /// <summary>
+    /// to be addlistener to the load button
+    /// </summary>
     public void OnClickStartLevel()
     {
         sceneLoader.LoadNextScene();

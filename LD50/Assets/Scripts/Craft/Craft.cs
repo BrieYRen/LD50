@@ -1,26 +1,37 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// this script can store a craft formula with a tool item and it's materials (material items or a FSM state) and products (product items or another FSM state)
+/// </summary>
 public class Craft : MonoBehaviour
 {
+    [Tooltip("darg and drop the tool item here")]
     public Tool toolItem;
 
+    [Tooltip("material items the tool can craft")]
     public List<Item> materials;
 
+    [Tooltip("product items in the same order with materials")]
     [SerializeField]
     List<Item> products;
 
+    [Tooltip("FSM the tool can craft")]
     [SerializeField]
     StateMachine stateMachine;
 
+    [Tooltip("the material state the tool can craft")]
     [SerializeField]
     State materialState;
 
+    [Tooltip("the product state of the FSM")]
     [SerializeField]
     State productState;
 
-    private bool canCraft = false;
+    /// <summary>
+    /// readonly bool to detect if the tool is activated
+    /// </summary>
+    protected bool canCraft = false;
     public bool CanCraft
     {
         get
@@ -49,9 +60,13 @@ public class Craft : MonoBehaviour
             DeactiveTool();
     }
 
+    /// <summary>
+    /// public method to activate the tool 
+    /// triggered when player left click the tool item in inventory
+    /// </summary>
     public void ActivateTool()
     {
-        // check if it's in placing
+        // check if it's in placing or in other crafting procedure
         if (handler.CheckIfPlacing() || craftManager.CheckIfCrafting())
             return;
 
@@ -63,17 +78,25 @@ public class Craft : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// public method to de-active the tool
+    /// triggered when player right click anywhere or finish crafting a product
+    /// </summary>
     public void DeactiveTool()
     {
         // resume mouse cursor
         cursorSwitcher.SetNormal();
 
-        // disallow craft
+        // dis-allow craft
         canCraft = false;
 
     }
 
-
+    /// <summary>
+    /// public method to craft a product item
+    /// triggered by left click the material item in inventory
+    /// </summary>
+    /// <param name="material"></param>
     public void CraftProduct(Item material)
     {
         if (!canCraft)
@@ -90,6 +113,10 @@ public class Craft : MonoBehaviour
         DeactiveTool();
     }
 
+    /// <summary>
+    /// public method to craft a product FSM state
+    /// triggered by left click the button of state machine
+    /// </summary>
     public void ChangeStateMachine()
     {
         if (!canCraft)

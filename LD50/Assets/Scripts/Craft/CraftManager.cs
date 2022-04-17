@@ -1,8 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// this is the script to manage all craft fomulas including init and active status check
+/// </summary>
 public class CraftManager : MonoBehaviour
 {
     public Dictionary<Item, Craft> formulas = new Dictionary<Item, Craft>();
@@ -12,6 +13,9 @@ public class CraftManager : MonoBehaviour
         InitFormulas();
     }
 
+    /// <summary>
+    /// init all craft formulas at the beginning of the game for further use
+    /// </summary>
     void InitFormulas()
     {
         Craft[] crafts = GetComponentsInChildren<Craft>();
@@ -29,6 +33,10 @@ public class CraftManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// public method to detect if any tool is activated
+    /// </summary>
+    /// <returns></returns>
     public bool CheckIfCrafting()
     {
         Craft[] crafts = GetComponentsInChildren<Craft>();
