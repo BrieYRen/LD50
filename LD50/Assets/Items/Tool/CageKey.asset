@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Cage Key
   icon: {fileID: 21300000, guid: 7cb8e0c77cdf1c64a9f2668cd015f556, type: 3}
+  pickupSfx: CageKeySpawn
   canPlace: 0
   placeCursor: {fileID: 0}
   placeCursorOffset: {x: 0, y: 0}
+  PlaceSfx: 
   toolCursor: {fileID: 2800000, guid: b81b7689ae479f24fbb13510573f96cd, type: 3}
   toolCursorOffset: {x: 0, y: 0}
-  inventoryOnly: 0
+  toolCursorSfx: CursorNormalToKey
+  resumeCursorSfx: CursorKeyToNormal
+  useToolSfx: CageKeyUnlock

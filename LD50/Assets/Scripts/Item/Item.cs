@@ -14,6 +14,9 @@ public class Item : ScriptableObject
     [Tooltip("icon of the item to be shown in inventory")]
     public Sprite icon = null;
 
+    [Tooltip("sound effect of the item when pick it up")]
+    public string pickupSfx;
+
     [Header("Place Item Settings")]
 
     [Tooltip("check true if the item can be placed from inventory to the environment")]
@@ -24,6 +27,10 @@ public class Item : ScriptableObject
 
     [Tooltip("the offset of the placing mouse cursor")]
     public Vector2 placeCursorOffset;
+
+    [Tooltip("sound effect of the item when place it in environment")]
+    public string PlaceSfx;
+
 
     /// <summary>
     /// triggered when player left click the item in inventory

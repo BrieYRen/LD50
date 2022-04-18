@@ -14,10 +14,13 @@ public class ItemPickUp : MonoBehaviour
     GameObject destroyAfterPickup;
 
     Inventory inventory;
+    AudioManager audioManager;
+
 
     private void Start()
     {
         inventory = GameManager.instance.inventoryManager;
+        audioManager = GameManager.instance.audioManager;
     }
 
     /// <summary>
@@ -27,11 +30,17 @@ public class ItemPickUp : MonoBehaviour
     {
         bool wasPickup = inventory.Add(item);
 
-        if (wasPickup && destroyAfterPickup != null)
+        if (wasPickup)
         {
-            destroyAfterPickup.SetActive(false);
-            destroyAfterPickup.GetComponent<ShowInteractChoices>().OnClickInteract();
+            audioManager.PlayIfHasAudio(item.pickupSfx, 0f);
+
+            if (destroyAfterPickup != null)
+            {
+                destroyAfterPickup.SetActive(false);
+                destroyAfterPickup.GetComponent<ShowInteractChoices>().OnClickInteract();
+            }
         }
+
             
     }
 }

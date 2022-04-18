@@ -42,6 +42,7 @@ public class Craft : MonoBehaviour
 
     Inventory inventory;
     CursorSwitcher cursorSwitcher;
+    AudioManager audioManager;
     PlaceItemHandler handler;
     CraftManager craftManager;
 
@@ -50,6 +51,7 @@ public class Craft : MonoBehaviour
     {
         inventory = GameManager.instance.inventoryManager;
         cursorSwitcher = GameManager.instance.cursorSwitcher;
+        audioManager = GameManager.instance.audioManager;
         handler = GameManager.instance.placeItemHandler;
         craftManager = GameManager.instance.craftManager;
     }
@@ -70,8 +72,9 @@ public class Craft : MonoBehaviour
         if (handler.CheckIfPlacing() || craftManager.CheckIfCrafting())
             return;
 
-        // change mouse cursor
+        // change mouse cursor with sfx
         cursorSwitcher.SetToCursor(toolItem.toolCursor, toolItem.toolCursorOffset);
+        audioManager.PlayIfHasAudio(toolItem.toolCursorSfx, 0f);
 
         // ready to craft
         canCraft = true;
@@ -84,8 +87,9 @@ public class Craft : MonoBehaviour
     /// </summary>
     public void DeactiveTool()
     {
-        // resume mouse cursor
+        // resume mouse cursor with sfx
         cursorSwitcher.SetNormal();
+        audioManager.PlayIfHasAudio(toolItem.resumeCursorSfx, 0f);
 
         // dis-allow craft
         canCraft = false;
@@ -108,6 +112,9 @@ public class Craft : MonoBehaviour
 
             int index = materials.IndexOf(material);           
             inventory.Add(products[index]);
+
+            audioManager.PlayIfHasAudio(toolItem.useToolSfx, 0f);
+            audioManager.PlayIfHasAudio(products[index].pickupSfx, 0f);
         }
 
         DeactiveTool();
@@ -125,6 +132,7 @@ public class Craft : MonoBehaviour
         if (stateMachine.CurrentState == materialState)
         {
             stateMachine.ChangeCurrentState(productState);
+            audioManager.PlayIfHasAudio(toolItem.useToolSfx, 0f);
         }
 
         DeactiveTool();

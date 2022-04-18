@@ -12,12 +12,25 @@ public class LaserOnState : State
     [SerializeField]
     Image laserOffImage;
 
+    AudioManager audioManager;
+
+    const string laserSwitchSfxName = "LaserPen";
+
+
+    private void Start()
+    {
+        audioManager = GameManager.instance.audioManager;
+    }
+
+
     public override void DoWhenEnter()
     {
         base.DoWhenEnter();
 
         laserOnImage.enabled = true;
         laserOffImage.enabled = false;
+
+        audioManager.PlayIfHasAudio(laserSwitchSfxName, 0f);
     }
 
     public override void DoWhenExit()
@@ -26,5 +39,7 @@ public class LaserOnState : State
 
         laserOffImage.enabled = true;
         laserOnImage.enabled = false;
+
+        audioManager.PlayIfHasAudio(laserSwitchSfxName, 0f);
     }
 }

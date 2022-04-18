@@ -28,6 +28,7 @@ public class Sound
     [Tooltip("The pitch of the sound, default value is 1")]
     [Range(.1f, 3f)]
     public float pitch = 1f;
-
-
+    [Tooltip("The stereo pan of the sound, default value is 0")]
+    [Range(-1f, 1f)]
+    public float stereo = 0f;
 }

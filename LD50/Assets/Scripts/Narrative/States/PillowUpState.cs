@@ -19,11 +19,15 @@ public class PillowUpState : State
     Item diaryKeyItem;
 
     Inventory inventory;
+    AudioManager audioManager;
+
+    const string pillowSfxName = "Pillow";
 
 
     private void Start()
     {
         inventory = GameManager.instance.inventoryManager;
+        audioManager = GameManager.instance.audioManager;
     }
 
     public override void DoWhenEnter()
@@ -32,6 +36,8 @@ public class PillowUpState : State
 
         upImage.enabled = true;
         normalImage.enabled = false;
+
+        audioManager.PlayIfHasAudio(pillowSfxName, 0f);
 
         if (!inventory.items.Contains(diaryKeyItem))
             diaryKeyGO.SetActive(true);
@@ -43,6 +49,8 @@ public class PillowUpState : State
 
         upImage.enabled = false;
         normalImage.enabled = true;
+
+        audioManager.PlayIfHasAudio(pillowSfxName, 0f);
 
         diaryKeyGO.SetActive(false);
     }

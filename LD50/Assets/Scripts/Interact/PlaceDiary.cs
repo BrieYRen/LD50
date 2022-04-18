@@ -69,12 +69,14 @@ public class PlaceDiary : PlaceItem
                 hasPlaced = true;
                 cageStateMachine.ChangeCurrentState(cageDiaryOpen);
                 RemoveItem();
+                audioManager.PlayIfHasAudio(item.PlaceSfx, 0f);
             }              
             else if (item == diaryClose)
             {
                 hasPlaced = true;
                 cageStateMachine.ChangeCurrentState(cageDiaryClose);
                 RemoveItem();
+                audioManager.PlayIfHasAudio(item.PlaceSfx, 0f);
             }               
         }      
     }

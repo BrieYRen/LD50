@@ -12,6 +12,19 @@ public class TVState : State
     [SerializeField]
     Image tvScreenImage;
 
+    [SerializeField]
+    string tvAMBName;
+
+    AudioManager audioManager;
+
+    const string tvControlSfxName = "TVControl";
+
+
+    private void Start()
+    {
+        audioManager = GameManager.instance.audioManager;
+    }
+
 
     public override void DoWhenEnter()
     {
@@ -19,6 +32,9 @@ public class TVState : State
 
         tvControlImage.enabled = true;
         tvScreenImage.enabled = true;
+
+        audioManager.PlayIfHasAudio(tvControlSfxName, 0f);
+        audioManager.PlayIfHasAudio(tvAMBName, 1f);
     }
 
     public override void DoWhenExit()
@@ -27,5 +43,7 @@ public class TVState : State
 
         tvControlImage.enabled = false;
         tvScreenImage.enabled = false;
+
+        audioManager.StopPlayCertainAudio(tvAMBName, 1f);
     }
 }

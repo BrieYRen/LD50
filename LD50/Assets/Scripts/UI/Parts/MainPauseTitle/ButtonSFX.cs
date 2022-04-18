@@ -6,18 +6,8 @@ using UnityEngine.UI;
 /// </summary>
 public class ButtonSFX : Button
 {
-    const string hoverSFXName = "FootstepWater01"; // todo
-    const string pressSFXName = "FootstepWater01"; // todo
-
-    AudioManager audioManager;
-
-
-    protected override void Start()
-    {
-        base.Start();
-
-        audioManager = GameManager.instance.audioManager;
-    }
+    const string hoverSFXName = "Hover"; 
+    const string pressSFXName = "Press"; 
 
 
     public override void OnPointerEnter(PointerEventData eventData)
@@ -30,7 +20,7 @@ public class ButtonSFX : Button
     void PlayHoverSound()
     {
         if (hoverSFXName != null)
-            audioManager.PlayIfHasAudio(hoverSFXName, 0f);
+            GameManager.instance.audioManager.PlayIfHasAudio(hoverSFXName, 0f);
     }
 
     public override void OnPointerClick(PointerEventData eventData)
@@ -43,6 +33,6 @@ public class ButtonSFX : Button
     void PlayPressSound()
     {
         if (pressSFXName != null)
-            audioManager.PlayIfHasAudio(pressSFXName, 0f);
+            GameManager.instance.audioManager.PlayIfHasAudio(pressSFXName, 0f);
     }
 }

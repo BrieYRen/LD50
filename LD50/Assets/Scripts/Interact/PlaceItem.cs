@@ -23,6 +23,7 @@ public class PlaceItem : MonoBehaviour
     CraftManager craftManager;
     PlaceItemHandler placeItemHandler;
     CursorSwitcher cursorSwitcher;
+    protected AudioManager audioManager;
     protected Inventory inventory;
 
     [Tooltip("the ui object to spawn")]
@@ -43,6 +44,7 @@ public class PlaceItem : MonoBehaviour
         craftManager = GameManager.instance.craftManager;
         placeItemHandler = GameManager.instance.placeItemHandler;
         cursorSwitcher = GameManager.instance.cursorSwitcher;
+        audioManager = GameManager.instance.audioManager;
         inventory = GameManager.instance.inventoryManager;
 
         freeplaceParent.blocksRaycasts = false;
@@ -120,6 +122,9 @@ public class PlaceItem : MonoBehaviour
 
             // remove from inventory 
             inventory.Removed(item);
+
+            // play place sfx
+            audioManager.PlayIfHasAudio(item.PlaceSfx, 0f);
         }
               
 

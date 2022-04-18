@@ -51,7 +51,7 @@ public class Level2 : Level
     const float s1StartAnimTime = 8.5f; 
 
     const int s1StartStartFrame = 0;
-    const int s1StartEndFrame = 38; 
+    const int s1StartEndFrame = 40; 
     const int s1StartFrozeFrame = 0;
 
     [Header("S1 Win Anim")]
@@ -65,10 +65,10 @@ public class Level2 : Level
     [SerializeField]
     AnimFrames[] animatedS1Anims;
 
-    const float s1WinAnimTime = 15.5f; 
+    const float s1WinAnimTime = 16f; 
 
     const int s1WinStartFrame = 0;
-    const int s1WinEndFrame = 73; 
+    const int s1WinEndFrame = 75; 
     const int s1WinFrozeFrame = 25; 
 
     [Header("S2 Failed Anim")]
@@ -83,10 +83,10 @@ public class Level2 : Level
 
     string tvCafeID = "TVCafe";
 
-    const float s2FailAnimTime = 10.5f;
+    const float s2FailAnimTime = 11f;
 
     const int s2FailStartFrame = 25;
-    const int s2FailEndFrame = 73;
+    const int s2FailEndFrame = 75;
     const int s2FailFrozeFrame = 25;
 
     [Header("S2 Win Anim")]
@@ -103,8 +103,8 @@ public class Level2 : Level
     const float s2WinAnimTime = 12.5f;
 
     const int s2WinStartFrame = 0; 
-    const int s2WinEndFrame = 60; 
-    const int s2WinFrozeFrame = 60; 
+    const int s2WinEndFrame = 61; 
+    const int s2WinFrozeFrame = 61; 
 
     SceneLoader sceneLoader;
 
@@ -116,6 +116,9 @@ public class Level2 : Level
     const string introAccompanyName = "BGMTitleAccompany";
     const string themeMelodyName = "BGMThemeMelody";
     const string themeAccompanyName = "BGMThemeAccompany";
+
+    const string coupleTvAmb = "AMBCouple";
+    const string fishTvAmb = "AMBUnderwater";
 
     const int introDelayBars = 0;
     const int themeDelayBars = 0;
@@ -139,6 +142,7 @@ public class Level2 : Level
 
         sceneLoader = GameManager.instance.sceneLoader;
         audioManager = GameManager.instance.audioManager;
+        audioManager.PlayIfHasAudio(coupleTvAmb, 1f);
 
         PlayFirstAnim();
     }
@@ -203,6 +207,8 @@ public class Level2 : Level
     IEnumerator LoadNextScene(float waitTime)
     {
         yield return new WaitForSecondsRealtime(waitTime);
+
+        audioManager.StopPlayCertainAudio(fishTvAmb, .5f);
 
         sceneLoader.LoadNextScene();
     }
@@ -283,7 +289,7 @@ public class Level2 : Level
         PlayAnimLoop(fishTVAnim, 0, fishTVAnim.sprites.Length - 1, animRateLoop);
 
         StartCoroutine(FrozeAtCertainFrame(animatedS2WinAnims, s2WinFrozeFrame, s2WinAnimTime));
-        StartCoroutine(UISettingAfterAnim(s2WinAnimTime));
+        StartCoroutine(UISettingAfterAnim(s2WinAnimTime + 2f));
 
         StartCoroutine(LoadNextScene(s2WinAnimTime + 2f));
     }

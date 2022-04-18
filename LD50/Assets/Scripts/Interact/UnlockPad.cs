@@ -24,12 +24,24 @@ public class UnlockPad : MonoBehaviour
     const float hideDotsTime = .1f;
     const float hidePanelTime = .5f;
 
+    const string buttonSfx = "IpadButton";
+    const string errorSfx = "PasscodeError";
+
+    AudioManager audioManager;
+
+
+    private void Start()
+    {
+        audioManager = GameManager.instance.audioManager;
+    }
+
 
     void UnlockIPad()
     {
         if (passcode != correctPasscode)
         {
             StartCoroutine(HidePasscodeDots(hideDotsTime));
+            StartCoroutine(PlayErrorSound(hideDotsTime * 1.5f));
             return;
         }
         
@@ -47,7 +59,13 @@ public class UnlockPad : MonoBehaviour
     IEnumerator HidePasscodeDots(float waitTime)
     {
         yield return new WaitForSecondsRealtime(waitTime);
-        passcodeDots[passcodeDots.Length - 1].enabled = false;
+        passcodeDots[passcodeDots.Length - 1].enabled = false;       
+    }
+
+    IEnumerator PlayErrorSound(float waitTime)
+    {
+        yield return new WaitForSecondsRealtime(waitTime);
+        audioManager.PlayIfHasAudio(errorSfx, 0f);
     }
 
     /// <summary>
@@ -66,6 +84,8 @@ public class UnlockPad : MonoBehaviour
 
         if (passcode.Length == correctPasscode.Length)
             UnlockIPad();
+
+        audioManager.PlayIfHasAudio(buttonSfx, 0f);
     }
 
 

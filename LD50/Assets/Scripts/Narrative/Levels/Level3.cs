@@ -25,15 +25,11 @@ public class Level3 : Level
     [SerializeField]
     UIPanel[] detailPanles;
 
-    [SerializeField]
-    Image papernCupBG;
-
     ToggleHUD toggleHUD;
     BlockPanel blockPanel;
     InventoryPanel inventoryPanel;
 
     LevelManager levelManager;
-    AudioManager audioManager;
     SceneLoader sceneLoader;
 
     [Header("S1 Start Anim")]
@@ -65,11 +61,25 @@ public class Level3 : Level
     [SerializeField]
     AnimFrames[] animatedWinAnims;
 
-    const float s1WinAnimTime = 0; //todo
+    const float s1WinAnimTime = 10f;
 
-    const int s1WinStartFrame = 0; //todo
-    const int s1WinEndFrame = 0; //todo
-    const int s1WinFrozeFrame = 0; //todo
+    const int s1WinStartFrame = 0;
+    const int s1WinEndFrame = 38;
+    const int s1WinFrozeFrame = 38;
+
+    [Header("Audio")]
+
+    AudioManager audioManager;
+
+    const string introMelodyName = "BGMIntroMelody";
+    const string introAccompanyName = "BGMIntroAccompany";
+    const string themeMelodyName = "BGMThemeMelody";
+    const string themeAccompanyName = "BGMThemeAccompany";
+
+    const string newsPodcastName = "NewsPodcast";
+
+    const int introDelayBars = 0;
+    const int themeDelayBars = 0;
 
 
 
@@ -139,9 +149,26 @@ public class Level3 : Level
             toFrozeAnims[i].GetComponent<Image>().sprite = toFrozeAnims[i].sprites[frozeFrame];
     }
 
+    IEnumerator StopPlayingNews(float waitTime)
+    {
+        yield return new WaitForSecondsRealtime(waitTime);
+
+        audioManager.StopPlayCertainAudio(newsPodcastName, .2f);
+    }
+
+    IEnumerator LoadNextScene(float waitTime)
+    {
+        yield return new WaitForSecondsRealtime(waitTime);
+
+        toggleHUD.HideHUD();
+        sceneLoader.LoadNextScene();
+    }
+
 
     void PlayFirstAnim()
     {
+        audioManager.PlayIfHasTwoLayerMusic(themeMelodyName, themeAccompanyName, false, themeDelayBars);
+
         UISettingsBeforeAnim();
         ActivateCertainAnims(activedStartAnims);
 
@@ -154,7 +181,18 @@ public class Level3 : Level
 
     void PlayWinAnim()
     {
-        //todo
+        audioManager.PlayIfHasTwoLayerMusic(introMelodyName, introAccompanyName, true, introDelayBars);
+
+        UISettingsBeforeAnim();
+        ActivateCertainAnims(activedWinAnims);
+
+        PlayCertainAnims(animatedWinAnims, s1WinStartFrame, s1WinEndFrame, animRateCat);
+
+        StartCoroutine(StopPlayingNews(s1WinAnimTime - 3f));
+        StartCoroutine(FrozeAtCertainFrame(animatedWinAnims, s1WinFrozeFrame, s1WinAnimTime));
+        StartCoroutine(UISettingAfterAnim(s1WinAnimTime + 2f));
+
+        StartCoroutine(LoadNextScene(s1WinAnimTime + 2f));
     }
 
 

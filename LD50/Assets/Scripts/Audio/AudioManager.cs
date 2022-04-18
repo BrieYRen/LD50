@@ -78,6 +78,7 @@ public class AudioManager : MonoBehaviour
                 audioSource.loop = s.isLoop;
                 audioSource.volume = s.volumn;
                 audioSource.pitch = s.pitch;
+                audioSource.panStereo = s.stereo;
 
                 audioDict.Add(s.name, audioSource);
 

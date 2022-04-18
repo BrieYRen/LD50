@@ -10,6 +10,9 @@ public class IpadPlayState : State
     Image playImage;
 
     [SerializeField]
+    Image podcastButtonImage;
+
+    [SerializeField]
     string newsAudioName;
 
     AudioManager audioManager;
@@ -24,6 +27,7 @@ public class IpadPlayState : State
         base.DoWhenEnter();
 
         playImage.enabled = true;
+        podcastButtonImage.enabled = true;
         audioManager.PlayIfHasAudio(newsAudioName, 1f);
     }
 
@@ -32,6 +36,7 @@ public class IpadPlayState : State
         base.DoWhenExit();
 
         playImage.enabled = false;
+        podcastButtonImage.enabled = false;
         audioManager.StopPlayCertainAudio(newsAudioName, 1f);
     }
 }

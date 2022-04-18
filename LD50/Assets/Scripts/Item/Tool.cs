@@ -16,8 +16,14 @@ public class Tool : Item
     [Tooltip("the offset of the tool mouse cursor")]
     public Vector2 toolCursorOffset;
 
-    [Tooltip("check false if the tool can craft both material items in inventory and FSM in environment")]
-    public bool inventoryOnly = true;
+    [Tooltip("the sound effect when activate the tool and the cursor changes to tool")]
+    public string toolCursorSfx;
+
+    [Tooltip("the sound effect when de-active the tool and the cursor changes to normal")]
+    public string resumeCursorSfx;
+
+    [Tooltip("the sound effect when use the tool and sucessfully crafts a product")]
+    public string useToolSfx;
 
 
     /// <summary>

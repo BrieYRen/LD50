@@ -8595,18 +8595,144 @@ MonoBehaviour:
     isLoop: 0
     volumn: 1
     pitch: 1
-  - name: Toy
-    audioClip: {fileID: 8300000, guid: 685e02de297fb4fd49d8117065e4a43b, type: 3}
-    audioMixerGroup: {fileID: -5574446958017045245, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+  - name: Hover
+    audioClip: {fileID: 8300000, guid: 10a54ccd3dde6d74d9e6a04c6499b82d, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+  - name: Press
+    audioClip: {fileID: 8300000, guid: 881e57e63f8aff040acb3c8e791bf01c, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+  - name: Menu
+    audioClip: {fileID: 8300000, guid: 4e342de9fbce1694b8d8be1992cb8760, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+  - name: Inventory
+    audioClip: {fileID: 8300000, guid: 4d445bd98bbee274cbe6d6ad88006fe3, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+  - name: PlayAnim
+    audioClip: {fileID: 8300000, guid: 410de4fc52d1b1f46924f75b5b8d507c, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+  - name: AMBSuburb
+    audioClip: {fileID: 8300000, guid: 8ddf2849c2777ff40aec1bd777fb9f6f, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
     playOnAwake: 1
     isLoop: 1
     volumn: 1
     pitch: 1
-  - name: FootstepWater01
-    audioClip: {fileID: 8300000, guid: adf4e7fa93007bd49937217a0922f285, type: 3}
+  - name: CursorKeyToNormal
+    audioClip: {fileID: 8300000, guid: a9ed0560dd73ee44eb70481d27efb585, type: 3}
     audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
     playOnAwake: 1
     isLoop: 0
+    volumn: 1
+    pitch: 1
+  - name: CursorNormalToKey
+    audioClip: {fileID: 8300000, guid: 74319fc3a24ed42439381749e2fdcb8a, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+  - name: CageKeySpawn
+    audioClip: {fileID: 8300000, guid: 3b0415faaa21cf34ab53d04c85bccfc1, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+  - name: CageKeyUnlock
+    audioClip: {fileID: 8300000, guid: 23843b4f9fe2de4458c8599fea07d6cf, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+  - name: DiaryKeyPickup
+    audioClip: {fileID: 8300000, guid: c23b687ace79d1149b6d8d937ded4943, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+  - name: DiaryKeyUnlock
+    audioClip: {fileID: 8300000, guid: 43e8d127059dc6747b169d0c036d63ce, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+  - name: DiaryPickup
+    audioClip: {fileID: 8300000, guid: ecff7d7de83d2244e8a9d2c5e930f517, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+  - name: DiaryOpenClose
+    audioClip: {fileID: 8300000, guid: 43b29af7f510ef042b98209b53f3605a, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+  - name: DiaryPlace
+    audioClip: {fileID: 8300000, guid: 01286285b2aec6d49a577ff046600f9c, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+  - name: Pillow
+    audioClip: {fileID: 8300000, guid: 63a358b8287d6f4418ae1f14494ce9eb, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+  - name: ToyPickup
+    audioClip: {fileID: 8300000, guid: 0ecca11a767d608439b20f7ee8cffc23, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+  - name: ToyPlace
+    audioClip: {fileID: 8300000, guid: 86c9d0d3a940f5c479c92a6234c13f51, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+  - name: ToyPressHeart
+    audioClip: {fileID: 8300000, guid: f16121a3fd60f774795c624d6ba3de36, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+  - name: ToyMusic
+    audioClip: {fileID: 8300000, guid: a28b36d0639ef4f4dbb94ca4a138813d, type: 3}
+    audioMixerGroup: {fileID: -5574446958017045245, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 1
     volumn: 1
     pitch: 1
   spacialSounds: []
@@ -9375,13 +9501,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85433ad649cf0bd4c91a994e507c1582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyCode: 27
+  keyCode: 0
   triggerType: 0
   isTopOnShow: 1
   lockHotkeyOnShow: 1
   hideCursorOnClose: 0
-  openSfxName: FootstepWater01
-  closeSfxName: FootstepWater01
+  openSfxName: Menu
+  closeSfxName: Menu
   fadeType: 1
   easeType: 3
   tweenDuration: 0.35
@@ -9615,8 +9741,8 @@ MonoBehaviour:
   isTopOnShow: 1
   lockHotkeyOnShow: 2
   hideCursorOnClose: 0
-  openSfxName: FootstepWater01
-  closeSfxName: FootstepWater01
+  openSfxName: Inventory
+  closeSfxName: Inventory
   fadeType: 0
   easeType: 3
   tweenDuration: 0.75
@@ -11214,7 +11340,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6626016173447984171, guid: 016053345d07aa048b5f4b03adcf074d, type: 3}
       propertyPath: toyMusicName
-      value: Toy
+      value: ToyMusic
       objectReference: {fileID: 0}
     - target: {fileID: 6626016173959363024, guid: 016053345d07aa048b5f4b03adcf074d, type: 3}
       propertyPath: m_Pivot.x

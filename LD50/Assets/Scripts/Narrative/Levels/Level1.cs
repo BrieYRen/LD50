@@ -181,13 +181,12 @@ public class Level1 : Level
     const string introAccompanyName = "BGMIntroAccompany";
     const string themeMelodyName = "BGMThemeMelody";
     const string themeAccompanyName = "BGMThemeAccompany";
-
-    string[] bgmLayers = new string[] { "BGMIntroMelody", "BGMIntroAccompany", "BGMThemeMelody", "BGMThemeAccompany", "BGMTitleMelody", "BGMTitleAccompany" };
-
+   
     const int introDelayBars = 0;
     const int themeDelayBars = 0;
 
-    const string toyMusic = "Toy";
+    const string levelAmbName = "AMBSuburb";
+    const string toyMusic = "ToyMusic";
 
     #endregion
 
@@ -224,6 +223,7 @@ public class Level1 : Level
         cageFSMCanvasGroup = cageStateMachine.gameObject.GetComponent<CanvasGroup>();
 
         audioManager = GameManager.instance.audioManager;
+        audioManager.PlayIfHasAudio(levelAmbName, 1f);
 
         PlayStartAnim();
     }
@@ -306,6 +306,7 @@ public class Level1 : Level
 
         inventoryPanel.Close();
 
+        audioManager.StopPlayCertainAudio(levelAmbName, 1f);
         audioManager.StopPlayCertainAudio(toyMusic, 1f);
 
     }
@@ -532,7 +533,6 @@ public class Level1 : Level
         s2WinAnimBird.PlayOnce(s2WinStartFrame, s2WinEndFrame, firstRate);
         s2WinAnimCat.PlayOnce(s2WinStartFrame, s2WinEndFrame, firstRate);
 
-        StartCoroutine(ResumeHUDInSec(s2WinAnimTime + 5f));
         StartCoroutine(SetActiveInSec(blockPanel.gameObject, false, s2WinAnimTime + 5f));
         StartCoroutine(AllowInteract(s2WinAnimTime + 5f));
         StartCoroutine(SetSortLayerInSec(defaultSortLayer, s2WinAnimTime + 5f));

@@ -7,14 +7,16 @@ public class Level : MonoBehaviour
 {
     [Tooltip("the index of this level")]
     public int levelIndex;
-    
+
+    const string playAnimSFXName = "PlayAnim";
+
 
     /// <summary>
     /// public method to be attached to the hud play anim button
     /// </summary>
     public virtual void CheckAnimConditions()
     {
-        // to be overrided
+        GameManager.instance.audioManager.PlayIfHasAudio(playAnimSFXName, 0f);
     }
 
 }
