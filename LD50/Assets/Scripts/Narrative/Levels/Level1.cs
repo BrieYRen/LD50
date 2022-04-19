@@ -188,6 +188,14 @@ public class Level1 : Level
     const string levelAmbName = "AMBSuburb";
     const string toyMusic = "ToyMusic";
 
+    const string anim1SoundName = ""; //todo
+    const string anim2SoundName = "";
+    const string anim3SoundName = "";
+    const string anim4SoundName = "";
+    const string anim5SoundName = "";
+    const string anim6SoundName = "";
+    const string anim7SoundName = "";
+
     #endregion
 
 
@@ -315,6 +323,7 @@ public class Level1 : Level
     void PlayStartAnim()
     {
         audioManager.PlayIfHasTwoLayerMusic(introMelodyName, introAccompanyName, true, introDelayBars);
+        audioManager.PlayIfHasAudio(anim1SoundName, .2f);
         
         toggleHUD.HideHUD();
         inventoryPanel.Close();
@@ -344,6 +353,7 @@ public class Level1 : Level
     void PlayS1FailedAnim()
     {
         audioManager.PlayIfHasTwoLayerMusic(themeMelodyName, themeAccompanyName, false, themeDelayBars);
+        audioManager.PlayIfHasAudio(anim2SoundName, .1f);
 
         toggleHUD.HideHUD();
         inventoryPanel.Close();
@@ -373,6 +383,7 @@ public class Level1 : Level
     void PlayS1WinAnim()
     {
         audioManager.PlayIfHasTwoLayerMusic(themeMelodyName, themeAccompanyName, false, themeDelayBars);
+        audioManager.PlayIfHasAudio(anim3SoundName, .1f);
 
         toggleHUD.HideHUD();
         inventoryPanel.Close();
@@ -405,6 +416,7 @@ public class Level1 : Level
     void PlayS2NormalAnim()
     {
         audioManager.PlayIfHasTwoLayerMusic(themeMelodyName, themeAccompanyName, false, themeDelayBars);
+        audioManager.PlayIfHasAudio(anim4SoundName, .1f);
 
         toggleHUD.HideHUD();
         inventoryPanel.Close();
@@ -441,6 +453,7 @@ public class Level1 : Level
     void PlayS2DiaryCloseAnim()
     {
         audioManager.PlayIfHasTwoLayerMusic(themeMelodyName, themeAccompanyName, false, themeDelayBars);
+        audioManager.PlayIfHasAudio(anim5SoundName, .1f);
 
         toggleHUD.HideHUD();
         inventoryPanel.Close();
@@ -477,6 +490,7 @@ public class Level1 : Level
     void PlayS2DiaryOpenAnim()
     {
         audioManager.PlayIfHasTwoLayerMusic(themeMelodyName, themeAccompanyName, false, themeDelayBars);
+        audioManager.PlayIfHasAudio(anim6SoundName, .1f);
 
         toggleHUD.HideHUD();
         inventoryPanel.Close();
@@ -513,6 +527,7 @@ public class Level1 : Level
     void PlayS2WinAnim()
     {
         audioManager.PlayIfHasTwoLayerMusic(themeMelodyName, themeAccompanyName, false, themeDelayBars);
+        audioManager.PlayIfHasAudio(anim7SoundName, .1f);
 
         // play s2 win anim
         toggleHUD.HideHUD();

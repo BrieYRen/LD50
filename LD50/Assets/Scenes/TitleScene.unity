@@ -130,6 +130,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 345705266, guid: 36aa1789276c6954eb7c30ac8b45db17, type: 3}
+      propertyPath: openSfxName
+      value: Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 345705266, guid: 36aa1789276c6954eb7c30ac8b45db17, type: 3}
+      propertyPath: closeSfxName
+      value: Menu
+      objectReference: {fileID: 0}
     - target: {fileID: 722151235, guid: 36aa1789276c6954eb7c30ac8b45db17, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -477,6 +485,14 @@ PrefabInstance:
     - target: {fileID: 2556166982648890169, guid: 36aa1789276c6954eb7c30ac8b45db17, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556166982791078040, guid: 36aa1789276c6954eb7c30ac8b45db17, type: 3}
+      propertyPath: openSfxName
+      value: Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556166982791078040, guid: 36aa1789276c6954eb7c30ac8b45db17, type: 3}
+      propertyPath: closeSfxName
+      value: Menu
       objectReference: {fileID: 0}
     - target: {fileID: 2556166983061043160, guid: 36aa1789276c6954eb7c30ac8b45db17, type: 3}
       propertyPath: m_AnchorMax.y
@@ -594,6 +610,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3056132999358674957, guid: 36aa1789276c6954eb7c30ac8b45db17, type: 3}
+      propertyPath: mainMenu
+      value: 
+      objectReference: {fileID: 148163847}
     - target: {fileID: 3056132999540399982, guid: 36aa1789276c6954eb7c30ac8b45db17, type: 3}
       propertyPath: flatSounds.Array.size
       value: 37
@@ -1112,6 +1132,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36aa1789276c6954eb7c30ac8b45db17, type: 3}
+--- !u!114 &148163847 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 345705266, guid: 36aa1789276c6954eb7c30ac8b45db17, type: 3}
+  m_PrefabInstance: {fileID: 148163846}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7730170fb2203ea42873e292bac3080a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

@@ -81,6 +81,8 @@ public class Level3 : Level
     const int introDelayBars = 0;
     const int themeDelayBars = 0;
 
+    const string anim1Sound = ""; //todo
+    const string anim2Sound = "";
 
 
     private void Start()
@@ -168,6 +170,7 @@ public class Level3 : Level
     void PlayFirstAnim()
     {
         audioManager.PlayIfHasTwoLayerMusic(themeMelodyName, themeAccompanyName, false, themeDelayBars);
+        audioManager.PlayIfHasAudio(anim1Sound, .1f);
 
         UISettingsBeforeAnim();
         ActivateCertainAnims(activedStartAnims);
@@ -182,6 +185,7 @@ public class Level3 : Level
     void PlayWinAnim()
     {
         audioManager.PlayIfHasTwoLayerMusic(introMelodyName, introAccompanyName, true, introDelayBars);
+        audioManager.PlayIfHasAudio(anim2Sound, .1f);
 
         UISettingsBeforeAnim();
         ActivateCertainAnims(activedWinAnims);

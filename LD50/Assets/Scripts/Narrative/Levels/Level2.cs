@@ -123,6 +123,12 @@ public class Level2 : Level
     const int introDelayBars = 0;
     const int themeDelayBars = 0;
 
+    const string anim1Sound = ""; //todo
+    const string anim2Sound = "";
+    const string anim3Sound = "";
+    const string anim4Sound = "";
+    const string anim5Sound = "";
+
     #endregion
 
 
@@ -216,6 +222,7 @@ public class Level2 : Level
     void PlayFirstAnim()
     {
         audioManager.PlayIfHasTwoLayerMusic(introMelodyName, introAccompanyName, true, introDelayBars);
+        audioManager.PlayIfHasAudio(anim1Sound, .2f);
 
         UISettingsBeforeAnim();
         ActivateCertainAnims(activedStartAnims);
@@ -232,6 +239,7 @@ public class Level2 : Level
     void PlayS1FailAnim()
     {
         audioManager.PlayIfHasTwoLayerMusic(themeMelodyName, themeAccompanyName, false, themeDelayBars);
+        audioManager.PlayIfHasAudio(anim2Sound, .1f);
 
         UISettingsBeforeAnim();
         ActivateCertainAnims(activedStartAnims);
@@ -247,6 +255,7 @@ public class Level2 : Level
     void PlayS1WinAnim()
     {
         audioManager.PlayIfHasTwoLayerMusic(introMelodyName, introAccompanyName, true, introDelayBars);
+        audioManager.PlayIfHasAudio(anim3Sound, .1f);
 
         UISettingsBeforeAnim();
         ActivateCertainAnims(activedS1Anims);
@@ -264,6 +273,7 @@ public class Level2 : Level
     void PlayS2FailAnim()
     {
         audioManager.PlayIfHasTwoLayerMusic(themeMelodyName, themeAccompanyName, false, themeDelayBars);
+        audioManager.PlayIfHasAudio(anim4Sound, .1f);
 
         UISettingsBeforeAnim();
         ActivateCertainAnims(activedS1Anims);
@@ -281,6 +291,7 @@ public class Level2 : Level
     void PlayS2WinAnim()
     {
         audioManager.PlayIfHasTwoLayerMusic(introMelodyName, introAccompanyName, true, introDelayBars);
+        audioManager.PlayIfHasAudio(anim5Sound, .1f);
 
         UISettingsBeforeAnim();
         ActivateCertainAnims(activedS2WinAnims);
