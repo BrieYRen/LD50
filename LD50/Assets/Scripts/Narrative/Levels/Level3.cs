@@ -81,8 +81,12 @@ public class Level3 : Level
     const int introDelayBars = 0;
     const int themeDelayBars = 0;
 
-    const string anim1Sound = ""; //todo
-    const string anim2Sound = "";
+    const string paperSound = "FoldPaper";
+    const string planeTakeOff = "PlaneTakeOff";
+    const string planeCrash = "PlaneCrash";
+    const string planeLanding = "PlaneLanding";
+    const string cupBroken = "CupBroken";
+    const string cat = "Cat";
 
 
     private void Start()
@@ -166,11 +170,23 @@ public class Level3 : Level
         sceneLoader.LoadNextScene();
     }
 
+    IEnumerator PlaySoundAt(string sound, float waitTime, float fadeTime)
+    {
+        yield return new WaitForSecondsRealtime(waitTime);
+        audioManager.PlayIfHasAudio(sound, fadeTime);
+    }
+
+    IEnumerator StopPlaySound(string sound, float waitTime, float fadeTime)
+    {
+        yield return new WaitForSecondsRealtime(waitTime);
+        audioManager.StopPlayCertainAudio(sound, fadeTime);
+    }
+
 
     void PlayFirstAnim()
     {
         audioManager.PlayIfHasTwoLayerMusic(themeMelodyName, themeAccompanyName, false, themeDelayBars);
-        audioManager.PlayIfHasAudio(anim1Sound, .1f);
+        PlayFirstAnimSFX();
 
         UISettingsBeforeAnim();
         ActivateCertainAnims(activedStartAnims);
@@ -182,10 +198,21 @@ public class Level3 : Level
         StartCoroutine(UISettingAfterAnim(s1StartAnimTime));
     }
 
+    void PlayFirstAnimSFX()
+    {
+        StartCoroutine(PlaySoundAt(paperSound, 0, .1f));
+        StartCoroutine(PlaySoundAt(planeTakeOff, 1.5f, .1f));
+        StartCoroutine(PlaySoundAt(planeCrash, 6f, .5f));
+        StartCoroutine(PlaySoundAt(cupBroken, 7f, 0f));
+        StartCoroutine(PlaySoundAt(cat, 7.75f, .85f));
+
+        StartCoroutine(StopPlaySound(planeCrash, s1StartAnimTime - 1f, 2f));
+    }
+
     void PlayWinAnim()
     {
         audioManager.PlayIfHasTwoLayerMusic(introMelodyName, introAccompanyName, true, introDelayBars);
-        audioManager.PlayIfHasAudio(anim2Sound, .1f);
+        PlayWinAnimSFX();
 
         UISettingsBeforeAnim();
         ActivateCertainAnims(activedWinAnims);
@@ -199,6 +226,16 @@ public class Level3 : Level
         StartCoroutine(LoadNextScene(s1WinAnimTime + 2f));
     }
 
+    void PlayWinAnimSFX()
+    {
+        StartCoroutine(PlaySoundAt(paperSound, 0, .1f));
+        StartCoroutine(PlaySoundAt(planeTakeOff, 1.5f, .1f));
+        StartCoroutine(PlaySoundAt(planeLanding, 7f, .5f));
+        StartCoroutine(PlaySoundAt(cupBroken, 8.5f, 0f));
+        StartCoroutine(PlaySoundAt(cat, 7.5f, .2f));
+
+        StartCoroutine(StopPlaySound(planeLanding, s1WinAnimTime - 1f, 3f));
+    }
 
     public override void CheckAnimConditions()
     {

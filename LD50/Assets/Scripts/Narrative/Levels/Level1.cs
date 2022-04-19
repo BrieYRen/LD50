@@ -188,13 +188,13 @@ public class Level1 : Level
     const string levelAmbName = "AMBSuburb";
     const string toyMusic = "ToyMusic";
 
-    const string anim1SoundName = ""; //todo
-    const string anim2SoundName = "";
-    const string anim3SoundName = "";
-    const string anim4SoundName = "";
-    const string anim5SoundName = "";
-    const string anim6SoundName = "";
-    const string anim7SoundName = "";
+    const string anim1SoundName = "L1Anim1";
+    const string anim2SoundName = "L1Anim2";
+    const string anim3SoundName = "L1Anim3";
+    const string anim4SoundName = "L1Anim4";
+    const string anim5SoundName = "L1Anim5";
+    const string anim6SoundName = "L1Anim6";
+    const string anim7SoundName = "L1Anim7";
 
     #endregion
 

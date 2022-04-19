@@ -123,11 +123,11 @@ public class Level2 : Level
     const int introDelayBars = 0;
     const int themeDelayBars = 0;
 
-    const string anim1Sound = ""; //todo
-    const string anim2Sound = "";
-    const string anim3Sound = "";
-    const string anim4Sound = "";
-    const string anim5Sound = "";
+    const string anim1Sound = "L2Anim1"; 
+    const string anim2Sound = "L2Anim2";
+    const string anim3Sound = "L2Anim3";
+    const string anim4Sound = "L2Anim4";
+    const string anim5Sound = "L2Anim5";
 
     #endregion
 
