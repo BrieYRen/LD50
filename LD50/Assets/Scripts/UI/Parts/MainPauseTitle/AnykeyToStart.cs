@@ -15,6 +15,9 @@ public class AnykeyToStart : MonoBehaviour
     [Tooltip("Drag and drop the continue button in main menu here, when there is previous progression in save file, it will be activated")]
     GameObject continueButton;
 
+    [SerializeField]
+    AnimFrames animFrames;
+
     int sceneIndexToShowContinue = 2;
 
     SceneLoader sceneLoader;
@@ -41,6 +44,8 @@ public class AnykeyToStart : MonoBehaviour
 
         audioManager = GameManager.instance.audioManager;
         StartCoroutine(PlayBGM(.01f));
+
+        animFrames.AlwaysPlay(0, 5, 2f);
     }
 
     IEnumerator PlayBGM(float delayTime)

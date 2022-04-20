@@ -13,11 +13,13 @@ public class BlinkEffect : MonoBehaviour
     PostProcessVolume volume;
     Vignette vignette;
 
-    bool isBlink = true;
+    float startBlinkTime;
+
+    bool isBlink = false;
     bool toStop = false;
 
 
-    private void Awake()
+    private void Start()
     {
         volume = GetComponent<PostProcessVolume>();
         volume.profile.TryGetSettings(out Vignette newVignette);
@@ -25,22 +27,31 @@ public class BlinkEffect : MonoBehaviour
     }
 
     private void Update()
-    {
-        if (isBlink)
-            Blink();
+    {       
+        Blink();
 
         if (toStop)
-        {
-            if (blackImage.alpha == 0)
-                isBlink = false;
-        }
+            ReadyToStop();
 
     }
 
     void Blink()
     {
-        vignette.intensity.value = Mathf.Sin(Time.time);
-        blackImage.alpha = Mathf.Sin(Time.time);
+        if (!isBlink || startBlinkTime == 0)
+            return;
+        
+        vignette.intensity.value = Mathf.Sin(Time.time - startBlinkTime);
+        blackImage.alpha = Mathf.Sin(Time.time - startBlinkTime);
+          
+    }
+
+    void ReadyToStop()
+    {
+        if (blackImage.alpha == 0)
+        {
+            toStop = false;
+            isBlink = false;
+        }
     }
 
     /// <summary>
@@ -48,6 +59,7 @@ public class BlinkEffect : MonoBehaviour
     /// </summary>
     public void BeginBlink()
     {
+        startBlinkTime = Time.time;
         isBlink = true;
     }
 

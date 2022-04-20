@@ -9,26 +9,37 @@ public class LevelEnd : MonoBehaviour
     [SerializeField]
     AnimFrames endAnim;
 
-    const float animRate = .5f;
+    const float animRate = 1f;
     const int startFrame = 0;
-    const int endFrame = 18; // todo
-    const float endAnimTime = 40f; //todo
+    const int endFrame = 47; 
+    const float endAnimTime = 47f;
 
     [SerializeField]
     UIPanel endMenu;
 
+    [SerializeField]
+    UIPanel exPanel;
+
+    [SerializeField]
+    UIPanel parentPanel;
+
+    [SerializeField]
+    UIPanel catPanel;
+
     AudioManager audioManager;
 
-    const string endingMelodyName = ""; //todo
-    const string endingAccompanyName = ""; //todo
+    const string endingMelodyName = "BGMEnding";
+    const string endingAccompanyName = "LastMeow";
     const int delayBars = 0;
-
-    const string endingSoundName = ""; //todo
 
     [SerializeField]
     BlinkEffect blinkEffect;
 
-    const float stopBlinkTime = 19f; //todo
+    const float blinkTime = 24f; 
+
+    const float exTime = 32.7f;
+    const float parentTime = 36.5f;
+    const float catTime = 41.5f;
 
 
     private void Start()
@@ -38,20 +49,35 @@ public class LevelEnd : MonoBehaviour
         PlayEndingCG();
 
         StartCoroutine(ShowMainMenu(endAnimTime + 2f));
-        StartCoroutine(StopBlink(stopBlinkTime));
+        StartCoroutine(BlinkOnce(blinkTime));
+
+        StartCoroutine(ShowText(exTime, exPanel, 2f));
+        StartCoroutine(ShowText(parentTime, parentPanel, 2f));
+        StartCoroutine(ShowText(catTime, catPanel, 3.5f));
     }
 
 
     void PlayEndingCG()
     {
         audioManager.PlayIfHasTwoLayerMusic(endingMelodyName, endingAccompanyName, true, delayBars);
-        audioManager.PlayIfHasAudio(endingSoundName, .1f);
-        //endAnim.PlayOnce(startFrame, endFrame, animRate);
+        endAnim.PlayOnce(startFrame, endFrame, animRate);
     }
 
+    /*
     IEnumerator StopBlink(float waitTime)
     {
         yield return new WaitForSecondsRealtime(waitTime);
+        blinkEffect.StopBlink();
+    }*/
+
+    IEnumerator BlinkOnce(float waitTime)
+    {
+        yield return new WaitForSecondsRealtime(waitTime);
+
+        blinkEffect.BeginBlink();
+
+        yield return new WaitForSecondsRealtime(2.5f);
+
         blinkEffect.StopBlink();
     }
 
@@ -59,6 +85,15 @@ public class LevelEnd : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(waitTime);
         endMenu.Show();
+    }
+
+    IEnumerator ShowText(float waitTime, UIPanel panel, float remainTime)
+    {
+        yield return new WaitForSecondsRealtime(waitTime);
+        panel.Show();
+
+        yield return new WaitForSecondsRealtime(remainTime);
+        panel.Close();
     }
 
 }
