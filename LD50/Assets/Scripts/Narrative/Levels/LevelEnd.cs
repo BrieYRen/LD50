@@ -9,10 +9,10 @@ public class LevelEnd : MonoBehaviour
     [SerializeField]
     AnimFrames endAnim;
 
-    const float animRate = 1f;
+    const float animRate = .5f;
     const int startFrame = 0;
     const int endFrame = 18; // todo
-    const float endAnimTime = 20f; //todo
+    const float endAnimTime = 40f; //todo
 
     [SerializeField]
     UIPanel endMenu;
@@ -25,14 +25,22 @@ public class LevelEnd : MonoBehaviour
 
     const string endingSoundName = ""; //todo
 
+    [SerializeField]
+    BlinkEffect blinkEffect;
+
+    const float stopBlinkTime = 19f; //todo
+
 
     private void Start()
     {
         audioManager = GameManager.instance.audioManager;
 
         PlayEndingCG();
+
         StartCoroutine(ShowMainMenu(endAnimTime + 2f));
+        StartCoroutine(StopBlink(stopBlinkTime));
     }
+
 
     void PlayEndingCG()
     {
@@ -41,10 +49,15 @@ public class LevelEnd : MonoBehaviour
         //endAnim.PlayOnce(startFrame, endFrame, animRate);
     }
 
+    IEnumerator StopBlink(float waitTime)
+    {
+        yield return new WaitForSecondsRealtime(waitTime);
+        blinkEffect.StopBlink();
+    }
+
     IEnumerator ShowMainMenu(float waitTime)
     {
         yield return new WaitForSecondsRealtime(waitTime);
-
         endMenu.Show();
     }
 

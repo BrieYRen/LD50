@@ -14,6 +14,7 @@ public class BlinkEffect : MonoBehaviour
     Vignette vignette;
 
     bool isBlink = true;
+    bool toStop = false;
 
 
     private void Awake()
@@ -27,22 +28,36 @@ public class BlinkEffect : MonoBehaviour
     {
         if (isBlink)
             Blink();
+
+        if (toStop)
+        {
+            if (blackImage.alpha == 0)
+                isBlink = false;
+        }
+
     }
 
     void Blink()
     {
-        vignette.intensity.value = Mathf.Sin(Time.realtimeSinceStartup);
-        blackImage.alpha = Mathf.Sin(Time.realtimeSinceStartup);
+        vignette.intensity.value = Mathf.Sin(Time.time);
+        blackImage.alpha = Mathf.Sin(Time.time);
     }
 
+    /// <summary>
+    /// public method to activate the blink effect
+    /// </summary>
     public void BeginBlink()
     {
         isBlink = true;
     }
 
+    /// <summary>
+    /// public method to stop blinking at next eye open wide moment
+    /// </summary>
     public void StopBlink()
     {
-        isBlink = false;
+        toStop = true;
     }
+
 
 }
