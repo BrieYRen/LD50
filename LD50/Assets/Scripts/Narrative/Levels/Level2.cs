@@ -19,7 +19,7 @@ public class Level2 : Level
     [SerializeField]
     AnimFrames[] allAnimFrames;
 
-    const int defaultSortLayer = 1;
+    const int defaultSortLayer = 0;
     const int playOnTopSortLayer = 20;
 
     int currentStage = 0;
@@ -150,7 +150,7 @@ public class Level2 : Level
         audioManager = GameManager.instance.audioManager;
         audioManager.PlayIfHasAudio(coupleTvAmb, 1f);
 
-        PlayFirstAnim();
+        Invoke("PlayFirstAnim", 1f);
     }
 
 
@@ -215,6 +215,7 @@ public class Level2 : Level
         yield return new WaitForSecondsRealtime(waitTime);
 
         audioManager.StopPlayCertainAudio(fishTvAmb, .5f);
+        toggleHUD.HideHUD();
 
         sceneLoader.LoadNextScene();
     }

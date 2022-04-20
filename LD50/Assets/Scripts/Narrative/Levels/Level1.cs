@@ -301,6 +301,7 @@ public class Level1 : Level
     {
         yield return new WaitForSecondsRealtime(delayTime);
 
+        toggleHUD.HideHUD();
         sceneLoader.LoadNextScene();
     }
 

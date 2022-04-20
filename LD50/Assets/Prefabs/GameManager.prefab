@@ -2199,8 +2199,8 @@ MonoBehaviour:
   isTopOnShow: 1
   lockHotkeyOnShow: 0
   hideCursorOnClose: 0
-  openSfxName: 
-  closeSfxName: 
+  openSfxName: Menu
+  closeSfxName: Menu
   fadeType: 0
   easeType: 3
   tweenDuration: 0.75
@@ -7333,8 +7333,8 @@ MonoBehaviour:
   isTopOnShow: 1
   lockHotkeyOnShow: 3
   hideCursorOnClose: 0
-  openSfxName: FootstepWater01
-  closeSfxName: FootstepWater01
+  openSfxName: Menu
+  closeSfxName: Menu
   fadeType: 0
   easeType: 0
   tweenDuration: 0.3
@@ -8551,92 +8551,105 @@ MonoBehaviour:
     audioMixerGroup: {fileID: -6807182085099606046, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
     playOnAwake: 1
     isLoop: 1
-    volumn: 1
+    volumn: 0.7
     pitch: 1
+    stereo: 0
   - name: BGMIntroMelody
     audioClip: {fileID: 8300000, guid: 90ea115531535b94d9ce63e177ba20db, type: 3}
     audioMixerGroup: {fileID: -6807182085099606046, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
     playOnAwake: 1
     isLoop: 1
-    volumn: 1
+    volumn: 0.7
     pitch: 1
+    stereo: 0
   - name: BGMThemeAccompany
     audioClip: {fileID: 8300000, guid: 301d6a0d067c1c44182d9e2aa3ec5e40, type: 3}
     audioMixerGroup: {fileID: -6807182085099606046, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
     playOnAwake: 1
     isLoop: 1
-    volumn: 1
+    volumn: 0.7
     pitch: 1
+    stereo: 0
   - name: BGMThemeMelody
     audioClip: {fileID: 8300000, guid: a7beae6544eadab43963b986300ec4c8, type: 3}
     audioMixerGroup: {fileID: -6807182085099606046, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
     playOnAwake: 1
     isLoop: 1
-    volumn: 1
+    volumn: 0.7
     pitch: 1
+    stereo: 0
   - name: BGMTitleMelody
     audioClip: {fileID: 8300000, guid: 2c546fe53fcbd6c4dbfe0cb02e13fce3, type: 3}
     audioMixerGroup: {fileID: -6807182085099606046, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
     playOnAwake: 1
     isLoop: 1
-    volumn: 1
+    volumn: 0.7
     pitch: 1
+    stereo: 0
   - name: BGMTitleAccompany
     audioClip: {fileID: 8300000, guid: c3d5c9c0d0c909943a6932d53bb0034b, type: 3}
     audioMixerGroup: {fileID: -6807182085099606046, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
     playOnAwake: 1
     isLoop: 1
-    volumn: 1
+    volumn: 0.7
     pitch: 1
+    stereo: 0
   - name: BGMEnding
     audioClip: {fileID: 8300000, guid: f241cb2298334fd4182f2a29d8c5ac29, type: 3}
     audioMixerGroup: {fileID: -6807182085099606046, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
     playOnAwake: 1
     isLoop: 0
-    volumn: 1
+    volumn: 0.7
     pitch: 1
+    stereo: 0
   - name: Hover
     audioClip: {fileID: 8300000, guid: 10a54ccd3dde6d74d9e6a04c6499b82d, type: 3}
     audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
     playOnAwake: 1
     isLoop: 0
-    volumn: 1
+    volumn: 0.7
     pitch: 1
+    stereo: 0
   - name: Press
     audioClip: {fileID: 8300000, guid: 881e57e63f8aff040acb3c8e791bf01c, type: 3}
     audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
     playOnAwake: 1
     isLoop: 0
-    volumn: 1
+    volumn: 0.7
     pitch: 1
+    stereo: 0
   - name: Menu
     audioClip: {fileID: 8300000, guid: 4e342de9fbce1694b8d8be1992cb8760, type: 3}
     audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
     playOnAwake: 1
     isLoop: 0
-    volumn: 1
+    volumn: 0.9
     pitch: 1
+    stereo: 0.3
   - name: Inventory
     audioClip: {fileID: 8300000, guid: 4d445bd98bbee274cbe6d6ad88006fe3, type: 3}
     audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
     playOnAwake: 1
     isLoop: 0
-    volumn: 1
+    volumn: 0.6
     pitch: 1
+    stereo: -0.3
   - name: PlayAnim
     audioClip: {fileID: 8300000, guid: 410de4fc52d1b1f46924f75b5b8d507c, type: 3}
     audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
     playOnAwake: 1
     isLoop: 0
-    volumn: 1
+    volumn: 0.8
     pitch: 1
+    stereo: 0.3
   - name: AMBSuburb
     audioClip: {fileID: 8300000, guid: 8ddf2849c2777ff40aec1bd777fb9f6f, type: 3}
-    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    audioMixerGroup: {fileID: -5574446958017045245, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
     playOnAwake: 1
     isLoop: 1
     volumn: 1
     pitch: 1
+    stereo: -0.2
   - name: CursorKeyToNormal
     audioClip: {fileID: 8300000, guid: a9ed0560dd73ee44eb70481d27efb585, type: 3}
     audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
@@ -8644,6 +8657,7 @@ MonoBehaviour:
     isLoop: 0
     volumn: 1
     pitch: 1
+    stereo: 0
   - name: CursorNormalToKey
     audioClip: {fileID: 8300000, guid: 74319fc3a24ed42439381749e2fdcb8a, type: 3}
     audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
@@ -8651,6 +8665,7 @@ MonoBehaviour:
     isLoop: 0
     volumn: 1
     pitch: 1
+    stereo: 0
   - name: CageKeySpawn
     audioClip: {fileID: 8300000, guid: 3b0415faaa21cf34ab53d04c85bccfc1, type: 3}
     audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
@@ -8658,6 +8673,7 @@ MonoBehaviour:
     isLoop: 0
     volumn: 1
     pitch: 1
+    stereo: -0.2
   - name: CageKeyUnlock
     audioClip: {fileID: 8300000, guid: 23843b4f9fe2de4458c8599fea07d6cf, type: 3}
     audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
@@ -8665,6 +8681,7 @@ MonoBehaviour:
     isLoop: 0
     volumn: 1
     pitch: 1
+    stereo: -0.2
   - name: DiaryKeyPickup
     audioClip: {fileID: 8300000, guid: c23b687ace79d1149b6d8d937ded4943, type: 3}
     audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
@@ -8672,6 +8689,7 @@ MonoBehaviour:
     isLoop: 0
     volumn: 1
     pitch: 1
+    stereo: 0.5
   - name: DiaryKeyUnlock
     audioClip: {fileID: 8300000, guid: 43e8d127059dc6747b169d0c036d63ce, type: 3}
     audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
@@ -8679,6 +8697,7 @@ MonoBehaviour:
     isLoop: 0
     volumn: 1
     pitch: 1
+    stereo: -0.1
   - name: DiaryPickup
     audioClip: {fileID: 8300000, guid: ecff7d7de83d2244e8a9d2c5e930f517, type: 3}
     audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
@@ -8686,6 +8705,7 @@ MonoBehaviour:
     isLoop: 0
     volumn: 1
     pitch: 1
+    stereo: -0.3
   - name: DiaryOpenClose
     audioClip: {fileID: 8300000, guid: 43b29af7f510ef042b98209b53f3605a, type: 3}
     audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
@@ -8693,6 +8713,7 @@ MonoBehaviour:
     isLoop: 0
     volumn: 1
     pitch: 1
+    stereo: -0.1
   - name: DiaryPlace
     audioClip: {fileID: 8300000, guid: 01286285b2aec6d49a577ff046600f9c, type: 3}
     audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
@@ -8700,27 +8721,31 @@ MonoBehaviour:
     isLoop: 0
     volumn: 1
     pitch: 1
+    stereo: -0.3
   - name: Pillow
-    audioClip: {fileID: 8300000, guid: 63a358b8287d6f4418ae1f14494ce9eb, type: 3}
+    audioClip: {fileID: 8300000, guid: 49c8a43dc986aab4cb9b0bfc08f6a043, type: 3}
     audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
     playOnAwake: 1
     isLoop: 0
     volumn: 1
     pitch: 1
+    stereo: 0.7
   - name: ToyPickup
     audioClip: {fileID: 8300000, guid: 0ecca11a767d608439b20f7ee8cffc23, type: 3}
     audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
     playOnAwake: 1
     isLoop: 0
-    volumn: 1
+    volumn: 0.65
     pitch: 1
+    stereo: 0
   - name: ToyPlace
-    audioClip: {fileID: 8300000, guid: 86c9d0d3a940f5c479c92a6234c13f51, type: 3}
+    audioClip: {fileID: 8300000, guid: 65a5c29e906f4f7488e21ef1f08d9b71, type: 3}
     audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
     playOnAwake: 1
     isLoop: 0
     volumn: 1
     pitch: 1
+    stereo: 0.5
   - name: ToyPressHeart
     audioClip: {fileID: 8300000, guid: f16121a3fd60f774795c624d6ba3de36, type: 3}
     audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
@@ -8728,13 +8753,239 @@ MonoBehaviour:
     isLoop: 0
     volumn: 1
     pitch: 1
+    stereo: 0.5
   - name: ToyMusic
     audioClip: {fileID: 8300000, guid: a28b36d0639ef4f4dbb94ca4a138813d, type: 3}
     audioMixerGroup: {fileID: -5574446958017045245, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
     playOnAwake: 1
     isLoop: 1
+    volumn: 0.39
+    pitch: 1
+    stereo: 0.35
+  - name: AMBCafe
+    audioClip: {fileID: 8300000, guid: e9ee06c41e56e3a429aa5dd27e598048, type: 3}
+    audioMixerGroup: {fileID: -5574446958017045245, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 1
+    volumn: 0.3
+    pitch: 1
+    stereo: -0.3
+  - name: AMBUnderwater
+    audioClip: {fileID: 8300000, guid: bd9cc270af5cf3f40b4b4b595f669466, type: 3}
+    audioMixerGroup: {fileID: -5574446958017045245, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 1
+    volumn: 0.7
+    pitch: 1
+    stereo: -0.3
+  - name: AMBCouple
+    audioClip: {fileID: 8300000, guid: ced89963f1b7f594fa7c72eb28d9d492, type: 3}
+    audioMixerGroup: {fileID: -509160426349268332, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 1
+    volumn: 0.39
+    pitch: 1
+    stereo: -0.3
+  - name: LaserPen
+    audioClip: {fileID: 8300000, guid: 67a9f06ec6e143a439225dcaec918bcb, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
     volumn: 1
     pitch: 1
+    stereo: 0.1
+  - name: TVControl
+    audioClip: {fileID: 8300000, guid: d79455801bb5d874785a8323d9a8f7d3, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+    stereo: 0.3
+  - name: NewsPodcast
+    audioClip: {fileID: 8300000, guid: 7bac47d462ccba84985066c43e17f0a5, type: 3}
+    audioMixerGroup: {fileID: -5574446958017045245, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 1
+    volumn: 1
+    pitch: 1
+    stereo: 0.15
+  - name: Calendar
+    audioClip: {fileID: 8300000, guid: 50303df02fda4614fbeefd56032878b0, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+    stereo: -0.8
+  - name: Ipad
+    audioClip: {fileID: 8300000, guid: c6ecc83c61ec4b54ca5f64e0cdca91bc, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+    stereo: 0.15
+  - name: IpadButton
+    audioClip: {fileID: 8300000, guid: 88c392a5690de9146916a94e23001ab2, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+    stereo: 0
+  - name: PasscodeError
+    audioClip: {fileID: 8300000, guid: 6dce1d2f49eb213439fc943137dc8104, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+    stereo: 0
+  - name: L1Anim1
+    audioClip: {fileID: 8300000, guid: 626b729454a95db48b8bd9321067c832, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 0.3
+    pitch: 1
+    stereo: -0.3
+  - name: L1Anim2
+    audioClip: {fileID: 8300000, guid: f2cfe402166141141adb9f88db46fa61, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 0.3
+    pitch: 1
+    stereo: -0.5
+  - name: L1Anim3
+    audioClip: {fileID: 8300000, guid: f7dbb6801e1190f4db88bcc2f5400117, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 0.3
+    pitch: 1
+    stereo: -0.1
+  - name: L1Anim4
+    audioClip: {fileID: 8300000, guid: 26c82a0af3fecac4e956059bb37adb3a, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 0.3
+    pitch: 1
+    stereo: -0.2
+  - name: L1Anim5
+    audioClip: {fileID: 8300000, guid: af2fa069baccf944c824b74531d04288, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 0.3
+    pitch: 1
+    stereo: -0.3
+  - name: L1Anim6
+    audioClip: {fileID: 8300000, guid: 9a0c5bf867c0a9d43847ec0963ea4f32, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 0.3
+    pitch: 1
+    stereo: -0.3
+  - name: L1Anim7
+    audioClip: {fileID: 8300000, guid: adc1fb5b6de5f5248b85a99207ef8931, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 0.3
+    pitch: 1
+    stereo: -0.1
+  - name: L2Anim1
+    audioClip: {fileID: 8300000, guid: 044395fcb06ca1d44bd0ff0cd4869973, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 0.3
+    pitch: 1
+    stereo: -0.1
+  - name: L2Anim2
+    audioClip: {fileID: 8300000, guid: 044395fcb06ca1d44bd0ff0cd4869973, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 0.3
+    pitch: 1
+    stereo: -0.6
+  - name: L2Anim3
+    audioClip: {fileID: 8300000, guid: 739a397233e8ad044b00e6605b89e60e, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 0.3
+    pitch: 1
+    stereo: -0.6
+  - name: L2Anim4
+    audioClip: {fileID: 8300000, guid: 2b9b98695312f304bad6c1932a79fa7e, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 0.3
+    pitch: 1
+    stereo: -0.6
+  - name: L2Anim5
+    audioClip: {fileID: 8300000, guid: 61689eb9e7631c947aa5879cf26b2ac5, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 0.3
+    pitch: 1
+    stereo: -0.6
+  - name: FoldPaper
+    audioClip: {fileID: 8300000, guid: aaed75f5a2b1547409cb8ac5d265c950, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+    stereo: 0
+  - name: PlaneTakeOff
+    audioClip: {fileID: 8300000, guid: 35bb7dbcf89ff5346b8436f1ed9f6bc2, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+    stereo: 0
+  - name: PlaneCrash
+    audioClip: {fileID: 8300000, guid: 254cc75153bdb4f47ab2b224c9885f63, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+    stereo: -0.5
+  - name: PlaneLanding
+    audioClip: {fileID: 8300000, guid: 2c0588ab19fa53842a4dc3f8710a0f1a, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+    stereo: -0.1
+  - name: CupBroken
+    audioClip: {fileID: 8300000, guid: 355be29f9f3a7474ca7b9388f637ae1a, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 1
+    pitch: 1
+    stereo: -0.1
+  - name: Cat
+    audioClip: {fileID: 8300000, guid: f91f4d80ef72bb643906fb5826d2c8b1, type: 3}
+    audioMixerGroup: {fileID: 9040717202963787617, guid: ebb47f5f00f7dfe48802d1856a509b72, type: 2}
+    playOnAwake: 1
+    isLoop: 0
+    volumn: 0.3
+    pitch: 1
+    stereo: -0.1
   spacialSounds: []
   currentMelody: 
   currentAccompany: 

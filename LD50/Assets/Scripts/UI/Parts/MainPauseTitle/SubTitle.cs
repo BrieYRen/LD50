@@ -32,7 +32,7 @@ public class SubTitle : MonoBehaviour
     public void OnClickStartLevel()
     {
         sceneLoader.LoadNextScene();
-        StartCoroutine(ResumeHUDInSec(sceneLoader.fadeDuration));
+        //StartCoroutine(ResumeHUDInSec(sceneLoader.fadeDuration));
     }
 
     IEnumerator ResumeHUDInSec(float sec)
