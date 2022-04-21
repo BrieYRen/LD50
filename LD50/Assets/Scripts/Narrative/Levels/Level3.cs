@@ -203,7 +203,7 @@ public class Level3 : Level
         StartCoroutine(PlaySoundAt(paperSound, 0, .1f));
         StartCoroutine(PlaySoundAt(planeTakeOff, 1.5f, .1f));
         StartCoroutine(PlaySoundAt(planeCrash, 6f, .5f));
-        StartCoroutine(PlaySoundAt(cupBroken, 7f, 0f));
+        StartCoroutine(PlaySoundAt(cupBroken, 8.1f, 0f));
         StartCoroutine(PlaySoundAt(cat, 7.75f, .85f));
 
         StartCoroutine(StopPlaySound(planeCrash, s1StartAnimTime - 1f, 2f));
@@ -231,7 +231,7 @@ public class Level3 : Level
         StartCoroutine(PlaySoundAt(paperSound, 0, .1f));
         StartCoroutine(PlaySoundAt(planeTakeOff, 1.5f, .1f));
         StartCoroutine(PlaySoundAt(planeLanding, 7f, .5f));
-        StartCoroutine(PlaySoundAt(cupBroken, 8.5f, 0f));
+        StartCoroutine(PlaySoundAt(cupBroken, 9f, 0f));
         StartCoroutine(PlaySoundAt(cat, 7.5f, .2f));
 
         StartCoroutine(StopPlaySound(planeLanding, s1WinAnimTime - 1f, 3f));

@@ -276,6 +276,13 @@ public class Level1 : Level
         animCanvasGroup.blocksRaycasts = false;
     }
 
+    IEnumerator ButtonInteract(Button button, bool targetBool, float delayTime)
+    {
+        yield return new WaitForSecondsRealtime(delayTime);
+
+        button.interactable = targetBool;
+    }
+
     IEnumerator SetActiveInSec(GameObject gameObject, bool targetBool, float delayTime)
     {
         yield return new WaitForSecondsRealtime(delayTime);
@@ -412,6 +419,7 @@ public class Level1 : Level
 
         StartCoroutine(SetActiveInSec(s1WinBirdAnim.gameObject, false, s1WinAnimTime + .1f));
         StartCoroutine(SetActiveInSec(cageStateMachine.gameObject, true, s1WinAnimTime + .1f));
+        StartCoroutine(ButtonInteract(cageStateMachine.GetComponentInChildren<Button>(), true, s1WinAnimTime + .1f));
     }
 
     void PlayS2NormalAnim()

@@ -11,7 +11,7 @@ public class LevelEnd : MonoBehaviour
 
     const float animRate = 1f;
     const int startFrame = 0;
-    const int endFrame = 47; 
+    const int endFrame = 49; 
     const float endAnimTime = 47f;
 
     [SerializeField]
@@ -28,8 +28,8 @@ public class LevelEnd : MonoBehaviour
 
     AudioManager audioManager;
 
-    const string endingMelodyName = "BGMEnding";
-    const string endingAccompanyName = "LastMeow";
+    const string endingMelodyName = "BGMEndingMelody";
+    const string endingAccompanyName = "BGMEndingAccompany";
     const int delayBars = 0;
 
     [SerializeField]
@@ -37,7 +37,7 @@ public class LevelEnd : MonoBehaviour
 
     const float blinkTime = 24f; 
 
-    const float exTime = 32.7f;
+    const float exTime = 33f;
     const float parentTime = 36.5f;
     const float catTime = 41.5f;
 
@@ -63,12 +63,6 @@ public class LevelEnd : MonoBehaviour
         endAnim.PlayOnce(startFrame, endFrame, animRate);
     }
 
-    /*
-    IEnumerator StopBlink(float waitTime)
-    {
-        yield return new WaitForSecondsRealtime(waitTime);
-        blinkEffect.StopBlink();
-    }*/
 
     IEnumerator BlinkOnce(float waitTime)
     {
