@@ -74,7 +74,7 @@ public class SceneLoader : MonoBehaviour
         while(!asyncOperation.isDone)
         {
             // do something when the scene is loading if needed
-            Debug.Log(asyncOperation.progress);
+            // Debug.Log(asyncOperation.progress);
 
             yield return null;
         }

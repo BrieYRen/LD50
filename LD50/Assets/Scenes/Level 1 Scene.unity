@@ -3074,7 +3074,6 @@ GameObject:
   - component: {fileID: 1211024276}
   - component: {fileID: 1211024274}
   - component: {fileID: 1211024273}
-  - component: {fileID: 1211024275}
   m_Layer: 5
   m_Name: PickUpButton
   m_TagString: Untagged
@@ -3172,21 +3171,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1211024275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1211024271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07cb18d886560f14eaad619d1f9a6cfb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hintCheck: {fileID: 0}
-  index: 2
-  targetVisable: 0
 --- !u!222 &1211024276
 CanvasRenderer:
   m_ObjectHideFlags: 0

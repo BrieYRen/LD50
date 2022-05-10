@@ -38,6 +38,12 @@ public class PlaceItem : MonoBehaviour
     [Tooltip("plane area that can place item at a preset position")]
     public string planeTag;
 
+    /// <summary>
+    /// public method to invoke certain tutorial when placed an item
+    /// </summary>
+    public delegate void OnPlacedItem();
+    public OnPlacedItem placedItemCallback;
+
 
     private void Start()
     {
@@ -133,6 +139,10 @@ public class PlaceItem : MonoBehaviour
 
         // leave the ready to place state
         BackNormal();
+
+        // invoke callback to check if triggered a tutorial
+        if (placedItemCallback != null)
+            placedItemCallback.Invoke();
     }
 
     /// <summary>

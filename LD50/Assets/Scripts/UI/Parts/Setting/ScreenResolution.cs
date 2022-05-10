@@ -49,7 +49,7 @@ public class ScreenResolution : MonoBehaviour
         dropdown.value = currentResolutionIndex;
         dropdown.RefreshShownValue();
 
-        Debug.Log(dropdown.value);
+        // Debug.Log(dropdown.value);
 
         dropdown.onValueChanged.AddListener(SetResolution);
     }
